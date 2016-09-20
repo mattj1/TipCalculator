@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Foundation
+
+let notificationTotalUpdated: String = "totalUpdatedNotification"
 
 //View Controller Life Cycle and Initialization Methods
 class ViewController: UIViewController {
@@ -14,17 +17,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalConsumeLabel: UITextView?
     @IBOutlet var verticalConstraintConsumeLabel: NSLayoutConstraint?
     @IBOutlet weak var containerView: UIView?
-    weak var calculatorVC: UIViewController?
+    weak var calculatorVC: CalculatorViewController?
+    weak var settingsVC: SettingsViewController?
     
-    //required init?(coder aDecoder: NSCoder) {
-    //    super.init(coder: aDecoder)
-    //}
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         
-        self.containerView?.layer.borderColor = UIColor.red.cgColor
-        self.containerView?.layer.borderWidth = 1.0
-        self.calculatorVC = self.storyboard?.instantiateViewController(withIdentifier: "calculatorFrame") as! CalculatorViewController
+        NotificationCenter.default.addObserver(self, selector:#selector(formatLocale) , name: NSNotification.Name(rawValue: notificationUpdatedLocale), object: nil)
+        self.calculatorVC = self.storyboard?.instantiateViewController(withIdentifier: "calculatorFrame") as? CalculatorViewController
         self.calculatorVC?.view.translatesAutoresizingMaskIntoConstraints = false
         self.addChildViewController(self.calculatorVC!)
         self.addSubView(subView: (self.calculatorVC?.view)!, toView:self.containerView!)
@@ -34,6 +37,7 @@ class ViewController: UIViewController {
         totalConsumeLabel?.textContainer.lineBreakMode = NSLineBreakMode.byTruncatingTail
         totalConsumeLabel?.keyboardType = UIKeyboardType.decimalPad
         totalConsumeLabel?.delegate = self
+        totalConsumeLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (totalConsumeLabel?.text)!, locale: self.selectedLocale)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -47,12 +51,24 @@ class ViewController: UIViewController {
     }
 }
 
+extension ViewController: SettingsProtocol {
+    var selectedLocale: Int {
+        return UserDefaults.standard.object(forKey: selectedLocaleKey) as! Int
+    }
+}
+
+//Segue and presentation methods
+extension ViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
+}
 
 //UITextView Delegate Methods
 extension ViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         self.view.layoutIfNeeded()
-        self.totalConsumeLabel?.text = "$"
+        textView.text = ""
         self.verticalConstraintConsumeLabel?.constant = -1 * ((self.totalConsumeLabel?.frame.minY)! - (self.navigationBar?.frame.height)!)
         UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
@@ -64,11 +80,13 @@ extension ViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         self.view.layoutIfNeeded()
         self.verticalConstraintConsumeLabel?.constant = 0
-        
+        totalConsumeLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (totalConsumeLabel?.text)!, locale: self.selectedLocale)
         UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
             }, completion: { (completed: Bool) in
+                
         })
+        NotificationCenter.default.post(Notification(name: Notification.Name(notificationTotalUpdated), object: self.totalConsumeLabel?.text, userInfo: nil))
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -90,6 +108,10 @@ extension ViewController {
 
 //Convenience methods
 extension ViewController {
+    func formatLocale() {
+        totalConsumeLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (totalConsumeLabel?.text)!, locale: self.selectedLocale)
+    }
+    
     func addSubView(subView: UIView, toView parentView: UIView) {
         parentView.addSubview(subView)
         

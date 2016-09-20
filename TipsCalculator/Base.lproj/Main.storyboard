@@ -25,7 +25,13 @@
                                     <constraint firstAttribute="width" secondItem="u4H-Ld-qKo" secondAttribute="height" multiplier="375:44" id="lNV-Fi-WQT"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="Title" id="rvU-DV-ifW"/>
+                                    <navigationItem title="Tip Calculator" id="h8P-tJ-ENW">
+                                        <barButtonItem key="rightBarButtonItem" title="Settings" id="Ces-cS-jZ3">
+                                            <connections>
+                                                <segue destination="JPg-Vu-xkM" kind="show" identifier="settingsVCSegue" id="F9G-6o-Pu5"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" text="$0.00" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="AfK-6F-AA8">
@@ -69,6 +75,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="140" y="138.98050974512745"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="tNw-6U-VjA">
+            <objects>
+                <viewController id="JPg-Vu-xkM" customClass="SettingsViewController" customModule="TipsCalculator" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Fz2-Hd-xfJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="LTu-He-Vma"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mai-yl-W5D">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TP8-RU-eAS">
+                                <frame key="frameInset" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Settings" id="wtX-ji-75W">
+                                        <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="Z2a-xZ-g6M">
+                                            <connections>
+                                                <action selector="backButtonPressedWithSender:" destination="JPg-Vu-xkM" id="cjP-B6-ojo"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Ml-Hr-5Dr">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="3Ml-Hr-5Dr" secondAttribute="height" multiplier="375:623" id="Nic-lb-Ggl"/>
+                                </constraints>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3Ml-Hr-5Dr" firstAttribute="centerX" secondItem="mai-yl-W5D" secondAttribute="centerX" id="XPQ-hR-cCc"/>
+                            <constraint firstItem="LTu-He-Vma" firstAttribute="top" secondItem="3Ml-Hr-5Dr" secondAttribute="bottom" id="ZsN-eE-eS3"/>
+                            <constraint firstItem="3Ml-Hr-5Dr" firstAttribute="width" secondItem="mai-yl-W5D" secondAttribute="width" id="hG9-gp-fZy"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="localeTableView" destination="3Ml-Hr-5Dr" id="flH-pP-wM1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="URk-P6-MX4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1087.2" y="-264.01799100449779"/>
         </scene>
         <!--Calculator View Controller-->
         <scene sceneID="4bT-8P-7R0">
