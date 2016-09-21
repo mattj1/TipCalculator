@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-
+let numberOfPeopleKey = "numberOfPeople"
+let tipPercentageKey = "tipPercentage"
 //Initialization and ViewController Life Cycle Methods
 class CalculatorViewController: UIViewController {
     @IBOutlet weak var percentageLabel: UILabel?
@@ -25,15 +26,19 @@ class CalculatorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        paymentPerPersonLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (paymentPerPersonLabel?.text)!, locale: self.selectedLocale)
-        tipTotalLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (tipTotalLabel?.text)!, locale: self.selectedLocale)
         
         NotificationCenter.default.addObserver(self, selector: #selector(formatLocale), name: NSNotification.Name(rawValue: notificationUpdatedLocale), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(totalUpdatedWithValue(notification:)), name: NSNotification.Name(rawValue: notificationTotalUpdated), object: nil)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        numberOfPeopleLabel?.text = UserDefaults.standard.object(forKey: numberOfPeopleKey) != nil ? String(describing: UserDefaults.standard.object(forKey: numberOfPeopleKey)!) : "1"
+        percentageLabel?.text = UserDefaults.standard.object(forKey: tipPercentageKey) != nil ? "\(String(describing: UserDefaults.standard.object(forKey: tipPercentageKey)!))%" : "0%"
+        self.updateValuesForUIEvent(totalString: self.currentTotalValue)
+        paymentPerPersonLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (paymentPerPersonLabel?.text)!, locale: self.selectedLocale)
+        tipTotalLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (tipTotalLabel?.text)!, locale: self.selectedLocale)
     }
     
     
@@ -50,6 +55,7 @@ extension CalculatorViewController {
         numberOfPeople = numberOfPeople + 1
         numberOfPeopleLabel?.text = "\(numberOfPeople)"
         self.updateValuesForUIEvent(totalString: self.currentTotalValue)
+        UserDefaults.standard.set(numberOfPeople, forKey: numberOfPeopleKey)
     }
     
     @IBAction func decreaseNumberOfPeople(sender: UIButton) {
@@ -58,6 +64,7 @@ extension CalculatorViewController {
             numberOfPeople = numberOfPeople - 1
             numberOfPeopleLabel?.text = "\(numberOfPeople)"
             self.updateValuesForUIEvent(totalString: self.currentTotalValue)
+            UserDefaults.standard.set(numberOfPeople, forKey: numberOfPeopleKey)
         }
     }
     
@@ -67,6 +74,7 @@ extension CalculatorViewController {
         tipPercent = tipPercent + 1
         percentageLabel?.text = "%\(tipPercent)"
         self.updateValuesForUIEvent(totalString: self.currentTotalValue)
+        UserDefaults.standard.set(tipPercent, forKey: tipPercentageKey)
     }
     
     @IBAction func decreaseTipPercentage(sender: UIButton) {
@@ -76,6 +84,7 @@ extension CalculatorViewController {
             tipPercent = tipPercent - 1
             percentageLabel?.text = "%\(tipPercent)"
             self.updateValuesForUIEvent(totalString: self.currentTotalValue)
+            UserDefaults.standard.set(tipPercent, forKey: tipPercentageKey)
         }
     }
 }
