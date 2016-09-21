@@ -13,7 +13,6 @@ let notificationTotalUpdated: String = "totalUpdatedNotification"
 
 //View Controller Life Cycle and Initialization Methods
 class ViewController: UIViewController {
-    @IBOutlet weak var navigationBar: UINavigationBar?
     @IBOutlet weak var totalConsumeLabel: UITextView?
     @IBOutlet var verticalConstraintConsumeLabel: NSLayoutConstraint?
     @IBOutlet weak var containerView: UIView?
@@ -57,19 +56,13 @@ extension ViewController: SettingsProtocol {
     }
 }
 
-//Segue and presentation methods
-extension ViewController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-    }
-}
-
 //UITextView Delegate Methods
 extension ViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         self.view.layoutIfNeeded()
         textView.text = ""
-        self.verticalConstraintConsumeLabel?.constant = -1 * ((self.totalConsumeLabel?.frame.minY)! - (self.navigationBar?.frame.height)!)
+        let padding: CGFloat = CGFloat(30.0)
+        self.verticalConstraintConsumeLabel?.constant = -1 * (((self.totalConsumeLabel?.frame.minY)! - (self.navigationController?.navigationBar.frame.height)!) - padding)
         UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
             }, completion: { (completed: Bool) in
