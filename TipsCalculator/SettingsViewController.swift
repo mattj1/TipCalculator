@@ -25,6 +25,7 @@ class SettingsViewController: UIViewController {
         localeTableView?.delegate = self
         localeTableView?.dataSource = self
         selectedLocale = UserDefaults.standard.integer(forKey: selectedLocaleKey)
+        self.title = "Settings"
     }
 }
 
