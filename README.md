@@ -15,24 +15,30 @@ The following **required** functionality is complete:
 
 The following **optional** features are implemented:
 * [X] UI animations
-* [X] Using locale-specific currency and currency thousands separators.
+* [X] Using locale-specific currency and currency thousands separators. Thousands separators still work in progress
 * [X] Making sure the keyboard is always visible and the bill amount is always the first responder. This way the user doesn't have to tap anywhere to use this app. Just launch the app and start typing.
 
 The following **additional** features are implemented:
 - [X] Easy to use controls for tip percentage and number of people
-- [X ] Remembers the number of people and last tip percentage use
+- [X] Remembers the number of people and last tip percentage use
 
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://imgur.com/86WK7Em' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://gfycat.com/PeacefulInbornCottontail' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-GIF created with [Imgur](http://www.cockos.com/licecap/).
+GIF created with [Imgur](http://imgur.com/86WK7Em) and [gfycat](https://gfycat.com/PeacefulInbornCottontail)
 
 ## Notes
 
 Describe any challenges encountered while building the app.
+
+I'm not an expert yet in AutoLayout so that caused me some issues, also dealing with the currency was a bit troublesome I could have done it easily in Objective-C but as Swift 3 is new for me I struggled a bit. Also I strugled with the new method initializers some of them were requiring me a different type of parameter in the initializer in order to instantiate the desired object.
+
+The thousands separator is still work in progress, this file and the repo will be updated once that part is finished.
+
 
 ## License
 
