@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import UIKit.UIApplication
 import Foundation
 
 let notificationTotalUpdated: String = "totalUpdatedNotification"
