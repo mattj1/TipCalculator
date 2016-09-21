@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UIKit.UIApplication
 import Foundation
 
 let notificationTotalUpdated: String = "totalUpdatedNotification"
@@ -24,8 +25,8 @@ class ViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        
         NotificationCenter.default.addObserver(self, selector:#selector(formatLocale) , name: NSNotification.Name(rawValue: notificationUpdatedLocale), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(makeTextViewFirstResponder), name: NSNotification.Name.UIApplicationDidBecomeActive , object: nil)
         self.calculatorVC = self.storyboard?.instantiateViewController(withIdentifier: "calculatorFrame") as? CalculatorViewController
         self.calculatorVC?.view.translatesAutoresizingMaskIntoConstraints = false
         self.addChildViewController(self.calculatorVC!)
@@ -90,6 +91,10 @@ extension ViewController: UITextViewDelegate {
         }
         
         return true
+    }
+    
+    func makeTextViewFirstResponder() {
+        totalConsumeLabel?.becomeFirstResponder()
     }
 }
 
