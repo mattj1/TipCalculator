@@ -37,8 +37,10 @@ class CalculatorViewController: UIViewController {
         numberOfPeopleLabel?.text = UserDefaults.standard.object(forKey: numberOfPeopleKey) != nil ? String(describing: UserDefaults.standard.object(forKey: numberOfPeopleKey)!) : "1"
         percentageLabel?.text = UserDefaults.standard.object(forKey: tipPercentageKey) != nil ? "\(String(describing: UserDefaults.standard.object(forKey: tipPercentageKey)!))%" : "0%"
         self.updateValuesForUIEvent(totalString: self.currentTotalValue)
-        paymentPerPersonLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (paymentPerPersonLabel?.text)!, locale: self.selectedLocale)
-        tipTotalLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (tipTotalLabel?.text)!, locale: self.selectedLocale)
+        
+        paymentPerPersonLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (paymentPerPersonLabel?.text)!, locale: Locale.availableIdentifiers[self.selectedLocale])
+        
+        tipTotalLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (tipTotalLabel?.text)!, locale: Locale.availableIdentifiers[self.selectedLocale])
     }
     
     
@@ -92,12 +94,12 @@ extension CalculatorViewController {
 extension CalculatorViewController {
     func updateValuesForUIEvent(totalString: String) {
         self.currentTotalValue = totalString
-        let totalNumeric: Float = LocaleManager.sharedInstace.returnDecimalWithoutLocale(value: totalString, locale: selectedLocale)
+        let totalNumeric: Float = LocaleManager.sharedInstace.returnFloatWithoutLocale(value: totalString)
         let percentageNumeric: Int = Int((percentageLabel?.text?.replacingOccurrences(of: "%", with: ""))!)!
         let totalTipFloat: Float = TipCalculatorManager.sharedInstance.calculateIndividualPayment(total: totalNumeric, percentage: percentageNumeric, people:Int( (numberOfPeopleLabel?.text)!)!)
         let perPersonTipFloat: Float = TipCalculatorManager.sharedInstance.calculateTotalTip(total: totalNumeric, percentage: percentageNumeric)
-        tipTotalLabel?.text = LocaleManager.sharedInstace.formatLocale(value: String(format: "%.2f", perPersonTipFloat), locale: selectedLocale)
-        paymentPerPersonLabel?.text = LocaleManager.sharedInstace.formatLocale(value: String(format: "%.2f", totalTipFloat), locale: selectedLocale)
+        tipTotalLabel?.text = LocaleManager.sharedInstace.formatLocale(value: String(format: "%.2f", perPersonTipFloat), locale: Locale.availableIdentifiers[selectedLocale])
+        paymentPerPersonLabel?.text = LocaleManager.sharedInstace.formatLocale(value: String(format: "%.2f", totalTipFloat), locale: Locale.availableIdentifiers[selectedLocale])
     }
 }
 
@@ -109,8 +111,8 @@ extension CalculatorViewController {
     }
     
     func formatLocale() {
-        paymentPerPersonLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (paymentPerPersonLabel?.text)!, locale: self.selectedLocale)
-        tipTotalLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (tipTotalLabel?.text)!, locale: self.selectedLocale)
+        paymentPerPersonLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (paymentPerPersonLabel?.text)!, locale: Locale.availableIdentifiers[self.selectedLocale])
+        tipTotalLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (tipTotalLabel?.text)!, locale: Locale.availableIdentifiers[self.selectedLocale])
     }
 }
 

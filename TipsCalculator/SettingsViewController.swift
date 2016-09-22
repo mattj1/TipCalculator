@@ -72,7 +72,7 @@ extension SettingsViewController: UITableViewDataSource {
         }
         
         
-        let localeName: String = LocaleManager.sharedInstace.identifiersArray[indexPath.row]
+        let localeName: String = NSLocale.availableLocaleIdentifiers[indexPath.row]
         onDemandCell.textLabel?.text = LocaleManager.sharedInstace.localeDictionary[localeName]
         
         
@@ -80,7 +80,7 @@ extension SettingsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return LocaleManager.sharedInstace.identifiersArray.count
+        return NSLocale.availableLocaleIdentifiers.count
     }
 }
 

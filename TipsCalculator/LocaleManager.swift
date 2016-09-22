@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class LocaleManager {
+class LocaleManager: Equatable {
     
     static let sharedInstace: LocaleManager = {
         let instance = LocaleManager()
@@ -17,13 +17,12 @@ class LocaleManager {
         return instance
     }()
     
-    var identifiersArray: [String]
+    //var identifiersArray: [String]
     var localeDictionary: [String: String] = [String: String]()
     
-    init() {
-        identifiersArray = NSLocale.availableLocaleIdentifiers
+    init(identifiers: [String]? = NSLocale.availableLocaleIdentifiers) {
         let locale = NSLocale(localeIdentifier: "en_US")
-        for identifier in identifiersArray {
+        for identifier in identifiers! {
             let name: String = locale.displayName(forKey: NSLocale.Key.identifier, value: identifier)!
             localeDictionary[identifier] = name
         }
@@ -47,28 +46,37 @@ class LocaleManager {
         return appendedComponents
     }
     
-    func formatLocale(value: String, locale: Int) -> String {
+    func formatLocale(value: String, locale: String) -> String {
         let appendedComponents: String = self.stripLocale(value: value)
         
         let formatter: NumberFormatter = NumberFormatter()
         formatter.numberStyle = NumberFormatter.Style.currency
-        formatter.locale = Locale(identifier: LocaleManager.sharedInstace.identifiersArray[locale])
+        formatter.locale = Locale(identifier: locale)
         let totalPriceNumber: Float = Float(appendedComponents)!
-        
+
         return formatter.string(from: NSNumber(value: totalPriceNumber))!
     }
     
-    func returnDecimalWithoutLocale(value: String, locale: Int) -> Float {
+    func returnFloatWithoutLocale(value: String) -> Float {
         let appendedComponents: String = self.stripLocale(value: value)
-        
-        let formatter: NumberFormatter = NumberFormatter()
-        formatter.numberStyle = NumberFormatter.Style.currency
-        formatter.locale = Locale(identifier: LocaleManager.sharedInstace.identifiersArray[locale])
         let totalPriceNumber: Float = Float(appendedComponents)!
         
         return totalPriceNumber
     }
     
+    public static func ==(lhs: LocaleManager, rhs: LocaleManager) -> Bool {
+        if (lhs.localeDictionary.count != rhs.localeDictionary.count) {
+            return false
+        }
+        
+        for identifier in NSLocale.availableLocaleIdentifiers {
+            if lhs.localeDictionary[identifier] != rhs.localeDictionary[identifier] {
+                return false
+            }
+        }
+        
+        return true
+    }
 }
 
 

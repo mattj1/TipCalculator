@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         totalConsumeLabel?.textContainer.lineBreakMode = NSLineBreakMode.byTruncatingTail
         totalConsumeLabel?.keyboardType = UIKeyboardType.decimalPad
         totalConsumeLabel?.delegate = self
-        totalConsumeLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (totalConsumeLabel?.text)!, locale: self.selectedLocale)
+        totalConsumeLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (totalConsumeLabel?.text)!, locale: Locale.availableIdentifiers[self.selectedLocale])
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -75,7 +75,7 @@ extension ViewController: UITextViewDelegate {
         self.view.layoutIfNeeded()
         self.verticalConstraintConsumeLabel?.constant = 0
         NotificationCenter.default.post(Notification(name: Notification.Name(notificationTotalUpdated), object: self.totalConsumeLabel?.text, userInfo: nil))
-        totalConsumeLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (totalConsumeLabel?.text)!, locale: self.selectedLocale)
+        totalConsumeLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (totalConsumeLabel?.text)!, locale: Locale.availableIdentifiers[self.selectedLocale])
         UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
             }, completion: { (completed: Bool) in
@@ -108,7 +108,7 @@ extension ViewController {
 //Convenience methods
 extension ViewController {
     func formatLocale() {
-        totalConsumeLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (totalConsumeLabel?.text)!, locale: self.selectedLocale)
+        totalConsumeLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (totalConsumeLabel?.text)!, locale: Locale.availableIdentifiers[self.selectedLocale])
     }
     
     func addSubView(subView: UIView, toView parentView: UIView) {

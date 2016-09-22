@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2057AB9C1D93849E00D905E0 /* LocaleManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2057AB9B1D93849E00D905E0 /* LocaleManagerTests.swift */; };
 		208F88A61D8FB65B00BB8C1C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208F88A51D8FB65B00BB8C1C /* SettingsViewController.swift */; };
 		208F88AB1D90BD7900BB8C1C /* LocaleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208F88AA1D90BD7900BB8C1C /* LocaleManager.swift */; };
 		20D4C9021D84A8C90056A1DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D4C9011D84A8C90056A1DA /* AppDelegate.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2057AB9B1D93849E00D905E0 /* LocaleManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocaleManagerTests.swift; sourceTree = "<group>"; };
 		208F88A51D8FB65B00BB8C1C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		208F88AA1D90BD7900BB8C1C /* LocaleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocaleManager.swift; sourceTree = "<group>"; };
 		20D4C8FE1D84A8C90056A1DA /* TipsCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TipsCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +134,7 @@
 			children = (
 				20D4C9161D84A8C90056A1DA /* TipsCalculatorTests.swift */,
 				20D4C9181D84A8C90056A1DA /* Info.plist */,
+				2057AB9B1D93849E00D905E0 /* LocaleManagerTests.swift */,
 			);
 			path = TipsCalculatorTests;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20D4C9171D84A8C90056A1DA /* TipsCalculatorTests.swift in Sources */,
+				2057AB9C1D93849E00D905E0 /* LocaleManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
