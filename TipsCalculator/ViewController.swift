@@ -74,13 +74,14 @@ extension ViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         self.view.layoutIfNeeded()
         self.verticalConstraintConsumeLabel?.constant = 0
+        NotificationCenter.default.post(Notification(name: Notification.Name(notificationTotalUpdated), object: self.totalConsumeLabel?.text, userInfo: nil))
         totalConsumeLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (totalConsumeLabel?.text)!, locale: self.selectedLocale)
         UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
             }, completion: { (completed: Bool) in
                 
         })
-        NotificationCenter.default.post(Notification(name: Notification.Name(notificationTotalUpdated), object: self.totalConsumeLabel?.text, userInfo: nil))
+        
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
