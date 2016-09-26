@@ -16,77 +16,27 @@ protocol SettingsProtocol {
     var selectedLocale: Int{ get }
 }
 
+typealias SettingsViewControllerComposed = UITableViewDataSource & UITableViewDelegate
+
 class SettingsViewController: UIViewController {
-    @IBOutlet weak var localeTableView: UITableView?
-    var selectedLocale: Int = 0
-    
+    @IBOutlet var localeTableView: UITableView?
+    @IBOutlet var settingsDataManager: SettingsViewControllerComposed?
     
     override func viewDidLoad() {
-        localeTableView?.delegate = self
-        localeTableView?.dataSource = self
-        selectedLocale = UserDefaults.standard.integer(forKey: selectedLocaleKey)
+        localeTableView?.delegate = settingsDataManager
+        localeTableView?.dataSource = settingsDataManager
         self.title = "Settings"
+        NotificationCenter.default.addObserver(self, selector: #selector(dismissSelf), name: Notification.Name(notificationUpdatedLocale), object: nil)
     }
 }
 
-//UITableView Delegate Methods
-extension SettingsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let tempIndexPath: IndexPath = IndexPath(row: selectedLocale, section: 0)
-        if let unselectedCell: UITableViewCell = tableView.cellForRow(at: tempIndexPath) {
-            unselectedCell.accessoryType = UITableViewCellAccessoryType.none
-        }
-        
-        
-        let selectedCell: UITableViewCell = tableView.cellForRow(at: indexPath)!
-        selectedCell.setSelected(true, animated: true)
-        selectedCell.accessoryType = UITableViewCellAccessoryType.checkmark
-        UserDefaults.standard.set(indexPath.row, forKey: selectedLocaleKey)
-        
-        NotificationCenter.default.post(Notification(name: Notification.Name(notificationUpdatedLocale), object: Int(indexPath.row)))
-        
-        self.dismiss(animated: true, completion: nil)
-    }
-}
-
-extension SettingsViewController: UITableViewDataSource {
-    @objc(tableView:heightForRowAtIndexPath:) func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40.0
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "Country"
-        }
-        return ""
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let onDemandCell: UITableViewCell = UITableViewCell()
-        
-        
-        if indexPath.row == selectedLocale {
-            onDemandCell.accessoryType = UITableViewCellAccessoryType.checkmark
-        } else {
-            onDemandCell.accessoryType = UITableViewCellAccessoryType.none
-        }
-        
-        
-        let localeName: String = NSLocale.availableLocaleIdentifiers[indexPath.row]
-        onDemandCell.textLabel?.text = LocaleManager.sharedInstace.localeDictionary[localeName]
-        
-        
-        return onDemandCell
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return NSLocale.availableLocaleIdentifiers.count
-    }
-}
-
-//UI Events
+//UI Events and notifications
 extension SettingsViewController {
     @IBAction func backButtonPressed(sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func dismissSelf() {
+        self.navigationController?.popViewController(animated: true)
     }
 }

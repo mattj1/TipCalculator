@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="D2r-k2-ZcS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="D2r-k2-ZcS">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -91,9 +91,11 @@
                     </view>
                     <connections>
                         <outlet property="localeTableView" destination="3Ml-Hr-5Dr" id="flH-pP-wM1"/>
+                        <outlet property="settingsDataManager" destination="uxB-uj-Yi1" id="759-0o-V7J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="URk-P6-MX4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="uxB-uj-Yi1" customClass="SettingsDataManager" customModule="TipsCalculator" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="2026.4000000000001" y="-264.01799100449779"/>
         </scene>
