@@ -4,7 +4,7 @@
 
 Submitted by: **Arturo Fernandez**
 
-Time spent: **X** hours spent in total
+Time spent: **8** hours spent in total
 
 ## User Stories
 
@@ -35,9 +35,8 @@ GIF created with [Imgur](http://imgur.com/86WK7Em) and [gfycat](https://gfycat.c
 
 Describe any challenges encountered while building the app.
 
-I'm not an expert yet in AutoLayout so that caused me some issues, also dealing with the currency was a bit troublesome I could have done it easily in Objective-C but as Swift 3 is new for me I struggled a bit. Also I strugled with the new method initializers some of them were requiring me a different type of parameter in the initializer in order to instantiate the desired object.
+I'm not an expert yet in AutoLayout so that caused me some issues, also dealing with the currency was a bit troublesome I could have done it easily in Objective-C but as Swift 3 is new for me I struggled a bit. I also faced some difficulties with the some of the classes initializer methods some of them were requiring me a different type of parameter in the initializer in order to instantiate an object from the desired class.
 
-The thousands separator is still work in progress, this file and the repo will be updated once that part is finished.
 
 
 ## License
