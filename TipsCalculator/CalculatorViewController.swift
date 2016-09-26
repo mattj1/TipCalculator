@@ -118,6 +118,10 @@ extension CalculatorViewController {
 
 extension CalculatorViewController: SettingsProtocol {
     var selectedLocale: Int {
-        return UserDefaults.standard.object(forKey: selectedLocaleKey) as! Int
+        if UserDefaults.standard.object(forKey: selectedLocaleKey) != nil {
+            return UserDefaults.standard.object(forKey: selectedLocaleKey) as! Int
+        }
+        
+        return 0
     }
 }

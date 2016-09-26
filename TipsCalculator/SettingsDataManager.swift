@@ -25,7 +25,12 @@ class SettingsDataManager: NSObject, UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let onDemandCell: UITableViewCell = UITableViewCell()
         
-        let selectedLocale:Int = Int(UserDefaults.standard.integer(forKey: selectedLocaleKey))
+        let selectedLocale: Int
+        if UserDefaults.standard.object(forKey: selectedLocaleKey) != nil {
+            selectedLocale = UserDefaults.standard.object(forKey: selectedLocaleKey) as! Int
+        } else {
+            selectedLocale = 0
+        }
         
         if indexPath.row == selectedLocale {
             onDemandCell.accessoryType = UITableViewCellAccessoryType.checkmark
@@ -46,7 +51,15 @@ class SettingsDataManager: NSObject, UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedLocale:Int = Int(UserDefaults.standard.integer(forKey: selectedLocaleKey))
+        
+        let selectedLocale: Int
+        if UserDefaults.standard.object(forKey: selectedLocaleKey) != nil {
+            selectedLocale = UserDefaults.standard.object(forKey: selectedLocaleKey) as! Int
+        } else {
+            selectedLocale = 0
+        }
+        
+        
         let tempIndexPath: IndexPath = IndexPath(row: selectedLocale , section: 0)
         if let unselectedCell: UITableViewCell = tableView.cellForRow(at: tempIndexPath) {
             unselectedCell.accessoryType = UITableViewCellAccessoryType.none
