@@ -96,8 +96,8 @@ extension CalculatorViewController {
         self.currentTotalValue = totalString
         let totalNumeric: Float = LocaleManager.sharedInstace.returnFloatWithoutLocale(value: totalString)
         let percentageNumeric: Int = Int((percentageLabel?.text?.replacingOccurrences(of: "%", with: ""))!)!
-        let totalTipFloat: Float = TipCalculatorManager.sharedInstance.calculateIndividualPayment(total: totalNumeric, percentage: percentageNumeric, people:Int( (numberOfPeopleLabel?.text)!)!)
-        let perPersonTipFloat: Float = TipCalculatorManager.sharedInstance.calculateTotalTip(total: totalNumeric, percentage: percentageNumeric)
+        let totalTipFloat: Float = TipCalculatorManager.calculateIndividualPayment(total: totalNumeric, percentage: percentageNumeric, people:Int( (numberOfPeopleLabel?.text)!)!)
+        let perPersonTipFloat: Float = TipCalculatorManager.calculateTotalTip(total: totalNumeric, percentage: percentageNumeric)
         tipTotalLabel?.text = LocaleManager.sharedInstace.formatLocale(value: String(format: "%.2f", perPersonTipFloat), locale: Locale.availableIdentifiers[selectedLocale])
         paymentPerPersonLabel?.text = LocaleManager.sharedInstace.formatLocale(value: String(format: "%.2f", totalTipFloat), locale: Locale.availableIdentifiers[selectedLocale])
     }

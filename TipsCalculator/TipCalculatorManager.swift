@@ -9,21 +9,12 @@
 import Foundation
 
 class TipCalculatorManager {
-    static let sharedInstance: TipCalculatorManager = {
-        let instance = TipCalculatorManager()
-        return instance
-    }()
-    
-    init() {
-        
-    }
-    
-    func calculateIndividualPayment(total: Float, percentage: Int, people: Int) -> Float {
+    class func calculateIndividualPayment(total: Float, percentage: Int, people: Int) -> Float {
         let percentageFraction: Float = Float(Float(percentage) / 100.0)
         return Float((total * percentageFraction) / Float(people))
     }
     
-    func calculateTotalTip(total: Float, percentage: Int) -> Float {
+    class func calculateTotalTip(total: Float, percentage: Int) -> Float {
         return Float(total * Float(Float(percentage) / 100.0))
     }
 }
