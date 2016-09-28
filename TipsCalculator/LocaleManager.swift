@@ -17,7 +17,6 @@ class LocaleManager: Equatable {
         return instance
     }()
     
-    //var identifiersArray: [String]
     var localeDictionary: [String: String] = [String: String]()
     
     init(identifiers: [String]? = NSLocale.availableLocaleIdentifiers) {

@@ -11,6 +11,7 @@
 		208F88A61D8FB65B00BB8C1C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208F88A51D8FB65B00BB8C1C /* SettingsViewController.swift */; };
 		208F88AB1D90BD7900BB8C1C /* LocaleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208F88AA1D90BD7900BB8C1C /* LocaleManager.swift */; };
 		209E61421D98E1C5008D5EE2 /* SettingsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209E61411D98E1C5008D5EE2 /* SettingsDataManager.swift */; };
+		209E61591D9C84DD008D5EE2 /* ToolBarBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209E61581D9C84DD008D5EE2 /* ToolBarBuilder.swift */; };
 		20D4C9021D84A8C90056A1DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D4C9011D84A8C90056A1DA /* AppDelegate.swift */; };
 		20D4C9041D84A8C90056A1DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D4C9031D84A8C90056A1DA /* ViewController.swift */; };
 		20D4C9071D84A8C90056A1DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20D4C9051D84A8C90056A1DA /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 		208F88A51D8FB65B00BB8C1C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		208F88AA1D90BD7900BB8C1C /* LocaleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocaleManager.swift; sourceTree = "<group>"; };
 		209E61411D98E1C5008D5EE2 /* SettingsDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDataManager.swift; sourceTree = "<group>"; };
+		209E61581D9C84DD008D5EE2 /* ToolBarBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarBuilder.swift; sourceTree = "<group>"; };
 		20D4C8FE1D84A8C90056A1DA /* TipsCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TipsCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20D4C9011D84A8C90056A1DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20D4C9031D84A8C90056A1DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			children = (
 				208F88AA1D90BD7900BB8C1C /* LocaleManager.swift */,
 				20D7FB491D91055700448CEC /* TipCalculatorManager.swift */,
+				209E61581D9C84DD008D5EE2 /* ToolBarBuilder.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20D4C9041D84A8C90056A1DA /* ViewController.swift in Sources */,
+				209E61591D9C84DD008D5EE2 /* ToolBarBuilder.swift in Sources */,
 				208F88AB1D90BD7900BB8C1C /* LocaleManager.swift in Sources */,
 				20D4C9321D85F83D0056A1DA /* CalculatorViewController.swift in Sources */,
 				20D4C9021D84A8C90056A1DA /* AppDelegate.swift in Sources */,

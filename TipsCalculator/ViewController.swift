@@ -30,7 +30,10 @@ class ViewController: UIViewController {
         self.calculatorVC?.view.translatesAutoresizingMaskIntoConstraints = false
         self.addChildViewController(self.calculatorVC!)
         self.addSubView(subView: (self.calculatorVC?.view)!, toView:self.containerView!)
-        self.addToolBar(textView: self.totalConsumeLabel!)
+        
+        let doneSelector = #selector(ViewController.donePressed)
+        ToolBarBuilder.addToolBar(textView: self.totalConsumeLabel!, tempSelector: doneSelector, title: "Done")
+        
         super.viewDidLoad()
         totalConsumeLabel?.textContainer.maximumNumberOfLines = 1
         totalConsumeLabel?.textContainer.lineBreakMode = NSLineBreakMode.byTruncatingTail
@@ -43,11 +46,6 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         totalConsumeLabel?.becomeFirstResponder()
         
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 
@@ -137,19 +135,6 @@ extension ViewController {
                 views: viewConstraintsDict
             )
         )
-    }
-    
-    func addToolBar(textView: UITextView) {
-        let toolBar = UIToolbar()
-        toolBar.barStyle = UIBarStyle.default
-        toolBar.isTranslucent = true
-        toolBar.tintColor = UIColor.blue
-        let doneButton:UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(ViewController.donePressed))
-        let spaceButton:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        toolBar.setItems([spaceButton, doneButton], animated: false)
-        toolBar.isUserInteractionEnabled = true
-        toolBar.sizeToFit()
-        textView.inputAccessoryView = toolBar
     }
 }
 
