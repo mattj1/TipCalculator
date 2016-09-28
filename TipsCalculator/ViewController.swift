@@ -29,10 +29,10 @@ class ViewController: UIViewController {
         self.calculatorVC = self.storyboard?.instantiateViewController(withIdentifier: "calculatorFrame") as? CalculatorViewController
         self.calculatorVC?.view.translatesAutoresizingMaskIntoConstraints = false
         self.addChildViewController(self.calculatorVC!)
-        self.addSubView(subView: (self.calculatorVC?.view)!, toView:self.containerView!)
+        self.containerView!.addSubView(subView: (self.calculatorVC?.view)!)
         
         let doneSelector = #selector(ViewController.donePressed)
-        ToolBarBuilder.addToolBar(textView: self.totalConsumeLabel!, tempSelector: doneSelector, title: "Done")
+        ToolBarBuilder.addToolBar(textView: self.totalConsumeLabel!, tempSelector: doneSelector, title: "Done", responder: self)
         
         super.viewDidLoad()
         totalConsumeLabel?.textContainer.maximumNumberOfLines = 1
@@ -111,30 +111,6 @@ extension ViewController {
 extension ViewController {
     func formatLocale() {
         totalConsumeLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (totalConsumeLabel?.text)!, locale: Locale.availableIdentifiers[self.selectedLocale])
-    }
-    
-    func addSubView(subView: UIView, toView parentView: UIView) {
-        parentView.addSubview(subView)
-        
-        var viewConstraintsDict = [String: AnyObject]()
-        viewConstraintsDict["subView"] = subView
-        parentView.addConstraints(
-            NSLayoutConstraint.constraints(
-                withVisualFormat: "H:|[subView]|",
-            options: [],
-            metrics: nil,
-            views: viewConstraintsDict
-            )
-        )
-        
-        parentView.addConstraints(
-            NSLayoutConstraint.constraints(
-                withVisualFormat: "V:|[subView]|",
-                options: [],
-                metrics: nil,
-                views: viewConstraintsDict
-            )
-        )
     }
 }
 
