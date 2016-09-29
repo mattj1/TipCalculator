@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if UserDefaults.standard.object(forKey: lastUsed) != nil {
             let lastTime: Date = UserDefaults.standard.object(forKey: lastUsed) as! Date
-            var elapsedTime: TimeInterval = lastTime.timeIntervalSince(Date())
+            let elapsedTime: TimeInterval = lastTime.timeIntervalSince(Date())
             if (elapsedTime > 1800) {
                 UserDefaults.standard.set(1, forKey: numberOfPeopleKey)
                 UserDefaults.standard.set(0, forKey: tipPercentageKey)
