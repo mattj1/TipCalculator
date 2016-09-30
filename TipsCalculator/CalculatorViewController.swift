@@ -41,6 +41,17 @@ class CalculatorViewController: UIViewController {
         paymentPerPersonLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (paymentPerPersonLabel?.text)!, locale: Locale.availableIdentifiers[self.selectedLocale])
         
         tipTotalLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (tipTotalLabel?.text)!, locale: Locale.availableIdentifiers[self.selectedLocale])
+        
+        self.view.backgroundColor = Theme.tipControlsBackgroundColor
+        tipTotalLabel?.textColor = Theme.tipControlsFontColor
+        tipAmountTitle?.textColor = Theme.tipControlsFontColor
+        tipPercentageTitle?.textColor = Theme.tipControlsFontColor
+        numberOfPeopleLabel?.textColor = Theme.tipControlsFontColor
+        numberOfPeopleTitle?.textColor = Theme.tipControlsFontColor
+        amountPerPersonTitle?.textColor = Theme.tipControlsFontColor
+        paymentPerPersonLabel?.textColor = Theme.tipControlsFontColor
+        percentageLabel?.textColor = Theme.tipControlsFontColor
+        
     }
     
     
@@ -62,7 +73,8 @@ extension CalculatorViewController {
     
     @IBAction func decreaseNumberOfPeople(sender: UIButton) {
         var numberOfPeople: Int = Int((numberOfPeopleLabel?.text)!)!
-        if (numberOfPeople > 1) {
+        
+        if ( numberOfPeople > 1 ) {
             numberOfPeople = numberOfPeople - 1
             numberOfPeopleLabel?.text = "\(numberOfPeople)"
             self.updateValuesForUIEvent(totalString: self.currentTotalValue)
@@ -82,7 +94,8 @@ extension CalculatorViewController {
     @IBAction func decreaseTipPercentage(sender: UIButton) {
         let tipPercentStrippedString: String = (percentageLabel?.text?.replacingOccurrences(of: "%", with: ""))!
         var tipPercent: Int = Int(tipPercentStrippedString)!
-        if  (tipPercent > 0) {
+        
+        if  ( tipPercent > 0 ) {
             tipPercent = tipPercent - 1
             percentageLabel?.text = "%\(tipPercent)"
             self.updateValuesForUIEvent(totalString: self.currentTotalValue)
@@ -94,11 +107,16 @@ extension CalculatorViewController {
 extension CalculatorViewController {
     func updateValuesForUIEvent(totalString: String) {
         self.currentTotalValue = totalString
+        
         let totalNumeric: Float = LocaleManager.sharedInstace.returnFloatWithoutLocale(value: totalString)
+        
         let percentageNumeric: Int = Int((percentageLabel?.text?.replacingOccurrences(of: "%", with: ""))!)!
+        
         let totalTipFloat: Float = TipCalculatorManager.calculateIndividualPayment(total: totalNumeric, percentage: percentageNumeric, people:Int( (numberOfPeopleLabel?.text)!)!)
         let perPersonTipFloat: Float = TipCalculatorManager.calculateTotalTip(total: totalNumeric, percentage: percentageNumeric)
+        
         tipTotalLabel?.text = LocaleManager.sharedInstace.formatLocale(value: String(format: "%.2f", perPersonTipFloat), locale: Locale.availableIdentifiers[selectedLocale])
+        
         paymentPerPersonLabel?.text = LocaleManager.sharedInstace.formatLocale(value: String(format: "%.2f", totalTipFloat), locale: Locale.availableIdentifiers[selectedLocale])
     }
 }

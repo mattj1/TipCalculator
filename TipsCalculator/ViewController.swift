@@ -39,13 +39,20 @@ class ViewController: UIViewController {
         totalConsumeLabel?.textContainer.lineBreakMode = NSLineBreakMode.byTruncatingTail
         totalConsumeLabel?.keyboardType = UIKeyboardType.decimalPad
         totalConsumeLabel?.delegate = self
+        totalConsumeLabel?.textColor = Theme.calculatorFontColor
         totalConsumeLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (totalConsumeLabel?.text)!, locale: Locale.availableIdentifiers[self.selectedLocale])
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         totalConsumeLabel?.becomeFirstResponder()
-        
+        totalConsumeLabel?.textColor = Theme.calculatorFontColor
+        self.view.backgroundColor = Theme.calculatorBackgroundColor
+        self.navigationController?.navigationBar.tintColor = Theme.toolBarButtonTintColor
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
 }
 
