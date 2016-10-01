@@ -4,7 +4,7 @@
 
 Submitted by: **Arturo Fernandez**
 
-Time spent: **8** hours spent in total
+Time spent: **10** hours spent in total
 
 ## User Stories
 
@@ -26,10 +26,9 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://imgur.com/86WK7Em' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-<img src='https://gfycat.com/PeacefulInbornCottontail' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://gfycat.com/IndelibleUnhealthyGossamerwingedbutterfly' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-GIF created with [Imgur](http://imgur.com/86WK7Em) and [gfycat](https://gfycat.com/PeacefulInbornCottontail)
+GIF created with [gfycat](https://gfycat.com/PeacefulInbornCottontail)
 
 ## Notes
 
