@@ -99,6 +99,7 @@ class SettingsDataManager: NSObject, UITableViewDelegate, UITableViewDataSource 
             UserDefaults.standard.set(indexPath.row, forKey: selectedLocaleKey)
             
             NotificationCenter.default.post(Notification(name: Notification.Name(notificationUpdatedLocale), object: Int(indexPath.row)))
+            return
         }
         
         let themeValue: ThemeEnum = indexPath.row == 0 ? ThemeEnum.Light : ThemeEnum.Dark
