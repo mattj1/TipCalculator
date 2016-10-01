@@ -26,7 +26,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://gfycat.com/IndelibleUnhealthyGossamerwingedbutterfly' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src="https://gfycat.com/IndelibleUnhealthyGossamerwingedbutterfly" alt="Demo" data-canonical-src="'https://gfycat.com/IndelibleUnhealthyGossamerwingedbutterfly'" style="max-width:100%;">
 
 GIF created with [gfycat](https://gfycat.com/PeacefulInbornCottontail)
 
