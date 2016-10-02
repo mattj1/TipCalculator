@@ -9,6 +9,11 @@
 import Foundation
 
 class TipCalculatorManager {
+    
+    init() {
+        
+    }
+    
     class func calculateIndividualPayment(total: Float, percentage: Int, people: Int) -> Float {
         let percentageFraction: Float = Float(Float(percentage) / 100.0)
         return Float((total * percentageFraction) / Float(people))

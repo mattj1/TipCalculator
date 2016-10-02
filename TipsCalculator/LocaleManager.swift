@@ -7,7 +7,9 @@
 //
 
 import Foundation
-import UIKit
+//import UIKit
+
+let selectedLocaleKey: String = "selectedLocale"
 
 class LocaleManager: Equatable {
     
@@ -45,12 +47,12 @@ class LocaleManager: Equatable {
         return appendedComponents
     }
     
-    func formatLocale(value: String, locale: String) -> String {
+    func formatLocale(value: String) -> String {
         let appendedComponents: String = self.stripLocale(value: value)
         
         let formatter: NumberFormatter = NumberFormatter()
         formatter.numberStyle = NumberFormatter.Style.currency
-        formatter.locale = Locale(identifier: locale)
+        formatter.locale = currentLocale();
         let totalPriceNumber: Float = Float(appendedComponents)!
 
         return formatter.string(from: NSNumber(value: totalPriceNumber))!
@@ -75,6 +77,18 @@ class LocaleManager: Equatable {
         }
         
         return true
+    }
+    
+    var selectedLocale: Int {
+        if (UserDefaults.standard.object(forKey: selectedLocaleKey) != nil) {
+            return UserDefaults.standard.object(forKey: selectedLocaleKey) as! Int
+        }
+        
+        return 0
+    }
+    
+    private func currentLocale() -> Locale {
+        return Locale(identifier: Locale.availableIdentifiers[self.selectedLocale]);
     }
 }
 

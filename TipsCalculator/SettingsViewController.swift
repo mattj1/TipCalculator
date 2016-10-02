@@ -9,13 +9,9 @@
 import Foundation
 import UIKit
 
-let selectedLocaleKey: String = "selectedLocale"
+
 let notificationUpdatedLocale: String = "updatedLocale"
 let notificationUpdateUIColors: String = "updateUIColors"
-
-protocol SettingsProtocol {
-    var selectedLocale: Int{ get }
-}
 
 typealias SettingsViewControllerComposed = UITableViewDataSource & UITableViewDelegate
 

@@ -12,24 +12,34 @@ import Foundation
 let notificationTotalUpdated: String = "totalUpdatedNotification"
 
 //View Controller Life Cycle and Initialization Methods
-class ViewController: UIViewController {
+class ViewController: UIViewController, TipCalculatorView {
     @IBOutlet weak var totalConsumeLabel: UITextView?
     @IBOutlet var verticalConstraintConsumeLabel: NSLayoutConstraint?
     @IBOutlet weak var containerView: UIView?
     weak var calculatorVC: CalculatorViewController?
     weak var settingsVC: SettingsViewController?
     
+    var presenter:TipCalculatorPresenterImpl?; // TODO
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        // This should come from application module, or injected into this ViewController...
+        
+        self.presenter = TipCalculatorPresenterImpl(tipCalculatorManager: TipCalculatorManager(), localeManager:LocaleManager());
+        
+        self.presenter?.view = self;
     }
     
     override func viewDidLoad() {
-        NotificationCenter.default.addObserver(self, selector:#selector(formatLocale) , name: NSNotification.Name(rawValue: notificationUpdatedLocale), object: nil)
+        //NotificationCenter.default.addObserver(self, selector:#selector(formatLocale) , name: NSNotification.Name(rawValue: notificationUpdatedLocale), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(makeTextViewFirstResponder), name: NSNotification.Name.UIApplicationDidBecomeActive , object: nil)
         self.calculatorVC = self.storyboard?.instantiateViewController(withIdentifier: "calculatorFrame") as? CalculatorViewController
         self.calculatorVC?.view.translatesAutoresizingMaskIntoConstraints = false
         self.addChildViewController(self.calculatorVC!)
         self.containerView!.addSubView(subView: (self.calculatorVC?.view)!)
+        
+        self.calculatorVC?.presenter = self.presenter;
         
         let doneSelector = #selector(ViewController.donePressed)
         ToolBarBuilder.addToolBar(textView: self.totalConsumeLabel!, tempSelector: doneSelector, title: "Done", responder: self)
@@ -40,7 +50,7 @@ class ViewController: UIViewController {
         totalConsumeLabel?.keyboardType = UIKeyboardType.decimalPad
         totalConsumeLabel?.delegate = self
         totalConsumeLabel?.textColor = Theme.calculatorFontColor
-        totalConsumeLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (totalConsumeLabel?.text)!, locale: Locale.availableIdentifiers[self.selectedLocale])
+        //totalConsumeLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (totalConsumeLabel?.text)!, locale: Locale.availableIdentifiers[self.selectedLocale])
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -49,20 +59,17 @@ class ViewController: UIViewController {
         totalConsumeLabel?.textColor = Theme.calculatorFontColor
         self.view.backgroundColor = Theme.calculatorBackgroundColor
         self.navigationController?.navigationBar.tintColor = Theme.toolBarButtonTintColor
+        
+        //totalConsumeLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (totalConsumeLabel?.text)!, locale: Locale.availableIdentifiers[self.selectedLocale])
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
-}
-
-extension ViewController: SettingsProtocol {
-    var selectedLocale: Int {
-        if (UserDefaults.standard.object(forKey: selectedLocaleKey) != nil) {
-            return UserDefaults.standard.object(forKey: selectedLocaleKey) as! Int
-        }
-        
-        return 0
+    
+    func updateView(total:String, tipPercentage:String, numPeople:String, tipAmount:String, amountPerson:String) {
+        totalConsumeLabel?.text = total;
+        self.calculatorVC?.updateView(tipPercentage: tipPercentage, numPeople: numPeople, tipAmount: tipAmount, amountPerson: amountPerson);
     }
 }
 
@@ -83,8 +90,9 @@ extension ViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         self.view.layoutIfNeeded()
         self.verticalConstraintConsumeLabel?.constant = 0
-        NotificationCenter.default.post(Notification(name: Notification.Name(notificationTotalUpdated), object: self.totalConsumeLabel?.text, userInfo: nil))
-        totalConsumeLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (totalConsumeLabel?.text)!, locale: Locale.availableIdentifiers[self.selectedLocale])
+        
+        self.presenter?.setTotal(total: (totalConsumeLabel?.text)!);
+        
         UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
             }, completion: { (completed: Bool) in
@@ -111,13 +119,6 @@ extension ViewController: UITextViewDelegate {
 extension ViewController {
     func donePressed() {
         self.totalConsumeLabel?.resignFirstResponder()
-    }
-}
-
-//Convenience methods
-extension ViewController {
-    func formatLocale() {
-        totalConsumeLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (totalConsumeLabel?.text)!, locale: Locale.availableIdentifiers[self.selectedLocale])
     }
 }
 
