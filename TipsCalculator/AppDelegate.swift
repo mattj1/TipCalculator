@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        Theme.startTheme()
+        Theme.startTheme(userPrefs: mainModule().getUserPrefs())
         if UserDefaults.standard.object(forKey: lastUsed) != nil {
             let lastTime: Date = UserDefaults.standard.object(forKey: lastUsed) as! Date
             let elapsedTime: TimeInterval = lastTime.timeIntervalSince(Date())

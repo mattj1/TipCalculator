@@ -8,8 +8,6 @@
 
 import Foundation
 
-print("Hello, World!")
-
 var mainModule:MainModule = MainModule();
 
 ConsoleTipCalculatorView(tipCalculatorModule:mainModule.createTipCalculatorModule());

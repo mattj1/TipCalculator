@@ -75,7 +75,26 @@ class LocaleManager: Equatable {
     }
     
     private func currentLocale() -> Locale {
-        return Locale(identifier: Locale.availableIdentifiers[userPrefs.getSelectedLocale()]);
+        var s:Int = userPrefs.getSelectedLocale();
+        if(s >= Locale.availableIdentifiers.count) {
+            s = 0;
+        }
+        let l_id:String = Locale.availableIdentifiers[s];
+        
+        //print("selected: \(s) id: \(l_id)");
+        return Locale(identifier: l_id);
+    }
+    
+    func getAllLocales() -> [String] {
+        return NSLocale.availableLocaleIdentifiers;
+    }
+    
+    func getLocaleCount() -> Int {
+        return NSLocale.availableLocaleIdentifiers.count;
+    }
+    
+    func getLocaleNameForId(localeID:String) -> String {
+        return localeDictionary[localeID]!;
     }
 }
 

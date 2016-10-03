@@ -9,27 +9,70 @@
 import Foundation
 import UIKit
 
-
-let notificationUpdatedLocale: String = "updatedLocale"
-let notificationUpdateUIColors: String = "updateUIColors"
-
 typealias SettingsViewControllerComposed = UITableViewDataSource & UITableViewDelegate
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, SettingsView {
     @IBOutlet var localeTableView: UITableView?
-    @IBOutlet var settingsDataManager: SettingsViewControllerComposed?
+    @IBOutlet var settingsDataManager: SettingsDataManager?
+    
+    var presenter:SettingsPresenterImpl?;
+    var userPrefs:UserPrefs?;
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
+        
+        self.userPrefs = appDelegate.mainModule().getUserPrefs();
+        self.presenter = SettingsPresenterImpl(localeManager:appDelegate.mainModule().getLocaleManager(), userPrefs:self.userPrefs!);
+        
+        self.presenter?.view = self;
+        
+        
+    }
     
     override func viewDidLoad() {
         localeTableView?.delegate = settingsDataManager
         localeTableView?.dataSource = settingsDataManager
+        
+        settingsDataManager?.presenter = self.presenter;
+        
         self.title = "Settings"
-        NotificationCenter.default.addObserver(self, selector: #selector(dismissSelf), name: Notification.Name(notificationUpdatedLocale), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUIColors), name: Notification.Name(notificationUpdateUIColors), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.updateUIColors()
+        
+        presenter?.viewWillAppear();
+    }
+    
+    func setTheme(index:Int) {
+        let themeValue: ThemeEnum = index == 0 ? ThemeEnum.Light : ThemeEnum.Dark
+        //var row: Int = 1
+        switch themeValue {
+        case ThemeEnum.Light:
+            Theme.themeLight(userPrefs:userPrefs!)
+        case ThemeEnum.Dark:
+            Theme.themeDark(userPrefs:userPrefs!)
+      //      row = 0
+        }
+        
+        updateUIColors();
+    }
+    
+    func close() {
+        self.dismissSelf();
+    }
+    
+    func setThemeCells(cells:[SettingsCell]) {
+        settingsDataManager?.setThemeCells(cells:cells);
+        localeTableView?.reloadData();
+    }
+    
+    func setLocaleCells(cells:[SettingsCell]) {
+        settingsDataManager?.setLocaleCells(cells:cells);
+        localeTableView?.reloadData();
     }
 }
 

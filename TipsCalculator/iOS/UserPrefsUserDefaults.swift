@@ -11,6 +11,7 @@ import Foundation
 let selectedLocaleKey: String = "selectedLocale"
 let numberOfPeopleKey = "numberOfPeople"
 let tipPercentageKey = "tipPercentage"
+let themeKey = "themeKey"
 
 class UserPrefsUserDefaults : UserPrefs {
     
@@ -47,6 +48,26 @@ class UserPrefsUserDefaults : UserPrefs {
     }
     
     func setSelectedLocale(value:Int) {
+        UserDefaults.standard.set(value, forKey: selectedLocaleKey);
         
+        /*let selectedLocale: Int
+        if UserDefaults.standard.object(forKey: selectedLocaleKey) != nil {
+            selectedLocale = UserDefaults.standard.object(forKey: selectedLocaleKey) as! Int
+        } else {
+            selectedLocale = 0
+        }*/
+    }
+    
+    func getThemeString() -> String {
+        var themeString:String? = UserDefaults.standard.string(forKey: themeKey)!;
+        if(themeString == nil) {
+            themeString = "light";
+        }
+        
+        return themeString!;
+    }
+    
+    func setThemeString(themeString:String) {
+        UserDefaults.standard.set(themeString, forKey: themeKey)
     }
 }

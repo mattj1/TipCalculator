@@ -17,4 +17,7 @@ protocol UserPrefs {
     
     func getSelectedLocale() -> Int;
     func setSelectedLocale(value:Int);
+    
+    func getThemeString() -> String;
+    func setThemeString(themeString:String);
 }
