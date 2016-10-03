@@ -27,8 +27,15 @@ class SettingsPresenterImpl : SettingsPresenter {
     init(localeManager:LocaleManager, userPrefs:UserPrefs) {
         self.userPrefs = userPrefs;
         self.localeManager = localeManager;
+    }
+    
+    // VERY INEFFICIENT! I'm lazy now...
+    func updateCells() {
+        themeCells = [SettingsCell]();
+        localeCells = [SettingsCell]();
         
         let selectedLocale:Int = userPrefs.getSelectedLocale();
+        let selectedTheme:String = userPrefs.getThemeString();
         
         for (index, locale) in self.localeManager.getAllLocales().enumerated() {
             let cell:SettingsCell = SettingsCell();
@@ -40,22 +47,26 @@ class SettingsPresenterImpl : SettingsPresenter {
         for theme:String in themes {
             let cell:SettingsCell = SettingsCell();
             cell.caption = theme;
-            cell.selected = false;
+            cell.selected = theme.lowercased() == selectedTheme; // hack, but works...
             themeCells.append(cell);
         }
-    }
-    
-    func viewWillAppear() {
+        
         view?.setThemeCells(cells:themeCells);
         view?.setLocaleCells(cells:localeCells);
     }
     
+    func viewWillAppear() {
+        updateCells();
+    }
+    
     func selectTheme(index:Int) {
         view?.setTheme(index: index);
+        updateCells();
     }
     
     func selectLocale(index:Int) {
         userPrefs.setSelectedLocale(value: index);
+        updateCells();
         view?.close();
     }
     

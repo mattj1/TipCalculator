@@ -57,32 +57,6 @@ class SettingsDataManager: NSObject, UITableViewDelegate, UITableViewDataSource 
         }
         
         return onDemandCell;
-        /*
-        if ( indexPath.section == 1 ) {
-            let selectedLocale: Int
-            if UserDefaults.standard.object(forKey: selectedLocaleKey) != nil {
-                selectedLocale = UserDefaults.standard.object(forKey: selectedLocaleKey) as! Int
-            } else {
-                selectedLocale = 0
-            }
-            
-
-            
-            // let localeName: String = NSLocale.availableLocaleIdentifiers[indexPath.row]
-            //onDemandCell.textLabel?.text = LocaleManager.sharedInstace.localeDictionary[localeName]
-            
-            return onDemandCell
-        }
-        
-        if indexPath.row == Theme.themeValue {
-            onDemandCell.accessoryType = UITableViewCellAccessoryType.checkmark
-        } else {
-            onDemandCell.accessoryType = UITableViewCellAccessoryType.none
-        }
-        
-        onDemandCell.textLabel?.text = themes[indexPath.row]
-        return onDemandCell
- */
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -104,22 +78,11 @@ class SettingsDataManager: NSObject, UITableViewDelegate, UITableViewDataSource 
         
         if indexPath.section == 1 {
 
-            
-            let tempIndexPath: IndexPath = IndexPath(row: selectedLocale , section: 1)
-            if let unselectedCell: UITableViewCell = tableView.cellForRow(at: tempIndexPath) {
-                unselectedCell.accessoryType = UITableViewCellAccessoryType.none
-            }
-            
             presenter?.selectLocale(index: indexPath.row);
-
             return
         }
         
         presenter?.selectTheme(index: indexPath.row);
-        
-        //let tempIndexPath = IndexPath(row: row, section: 0)
-        //let unselectedCell = tableView.cellForRow(at: tempIndexPath)
-        //unselectedCell?.accessoryType = UITableViewCellAccessoryType.none
     }
 
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
