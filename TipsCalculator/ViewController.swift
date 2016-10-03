@@ -17,7 +17,7 @@ class ViewController: UIViewController, TipCalculatorView {
     weak var calculatorVC: CalculatorViewController?
     weak var settingsVC: SettingsViewController?
     
-    var presenter:TipCalculatorPresenterImpl?; // TODO
+    var presenter:TipCalculatorPresenter?;
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -28,7 +28,7 @@ class ViewController: UIViewController, TipCalculatorView {
         
         self.presenter = tipCalculatorModule.presenter;
         
-        self.presenter?.view = self;
+        self.presenter?.setView(view: self);
     }
     
     override func viewDidLoad() {

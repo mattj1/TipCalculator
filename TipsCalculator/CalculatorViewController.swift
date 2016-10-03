@@ -22,7 +22,7 @@ class CalculatorViewController: UIViewController {
     
     var currentTotalValue: String = "0.00"
     
-    var presenter:TipCalculatorPresenterImpl?;
+    var presenter:TipCalculatorPresenter?;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,7 @@ class CalculatorViewController: UIViewController {
         paymentPerPersonLabel?.textColor = Theme.tipControlsFontColor
         percentageLabel?.textColor = Theme.tipControlsFontColor
         
-        self.presenter?.viewDidAppear();
+        self.presenter?.viewWillAppear();
     }
     
     override func viewDidDisappear(_ animated: Bool) {

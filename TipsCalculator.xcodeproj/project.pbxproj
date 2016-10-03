@@ -46,6 +46,8 @@
 		4CA85F051DA1EAE000601C0C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85F041DA1EAE000601C0C /* SettingsView.swift */; };
 		4CA85F061DA1EAE000601C0C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85F041DA1EAE000601C0C /* SettingsView.swift */; };
 		4CA85F071DA21DAC00601C0C /* UserPrefsUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85EF91DA1DA3400601C0C /* UserPrefsUserDefaults.swift */; };
+		4CA85F091DA252F200601C0C /* TipCalculatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85F081DA252F200601C0C /* TipCalculatorPresenter.swift */; };
+		4CA85F0A1DA252F200601C0C /* TipCalculatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85F081DA252F200601C0C /* TipCalculatorPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +115,7 @@
 		4CA85EFE1DA1E5F000601C0C /* SettingsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsPresenter.swift; path = Model/SettingsPresenter.swift; sourceTree = "<group>"; };
 		4CA85F011DA1E69400601C0C /* SettingsPresenterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsPresenterImpl.swift; path = Model/SettingsPresenterImpl.swift; sourceTree = "<group>"; };
 		4CA85F041DA1EAE000601C0C /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsView.swift; path = Model/SettingsView.swift; sourceTree = "<group>"; };
+		4CA85F081DA252F200601C0C /* TipCalculatorPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TipCalculatorPresenter.swift; path = Model/TipCalculatorPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,14 +243,15 @@
 		4CA85EE21DA195A800601C0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4CA85EE31DA195CB00601C0C /* TipCalculatorView.swift */,
+				4CA85F081DA252F200601C0C /* TipCalculatorPresenter.swift */,
 				4CA85EE81DA196C600601C0C /* TipCalculatorPresenterImpl.swift */,
-				4CA85EEF1DA1D2E800601C0C /* MainModule.swift */,
-				4CA85EF41DA1D49400601C0C /* TipCalculatorModule.swift */,
-				4CA85EF71DA1D9B000601C0C /* UserPrefs.swift */,
+				4CA85EE31DA195CB00601C0C /* TipCalculatorView.swift */,
 				4CA85EFE1DA1E5F000601C0C /* SettingsPresenter.swift */,
 				4CA85F011DA1E69400601C0C /* SettingsPresenterImpl.swift */,
 				4CA85F041DA1EAE000601C0C /* SettingsView.swift */,
+				4CA85EEF1DA1D2E800601C0C /* MainModule.swift */,
+				4CA85EF41DA1D49400601C0C /* TipCalculatorModule.swift */,
+				4CA85EF71DA1D9B000601C0C /* UserPrefs.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -433,6 +437,7 @@
 				4CA85EE41DA195CB00601C0C /* TipCalculatorView.swift in Sources */,
 				209E615D1D9C87D3008D5EE2 /* UIViewExtension.swift in Sources */,
 				4CA85F021DA1E69400601C0C /* SettingsPresenterImpl.swift in Sources */,
+				4CA85F091DA252F200601C0C /* TipCalculatorPresenter.swift in Sources */,
 				4CA85EFA1DA1DA3400601C0C /* UserPrefsUserDefaults.swift in Sources */,
 				209E61421D98E1C5008D5EE2 /* SettingsDataManager.swift in Sources */,
 				20D7FB4A1D91055700448CEC /* TipCalculatorManager.swift in Sources */,
@@ -471,6 +476,7 @@
 				4CA85F071DA21DAC00601C0C /* UserPrefsUserDefaults.swift in Sources */,
 				4CA85F061DA1EAE000601C0C /* SettingsView.swift in Sources */,
 				4CA85EE71DA1962000601C0C /* TipCalculatorView.swift in Sources */,
+				4CA85F0A1DA252F200601C0C /* TipCalculatorPresenter.swift in Sources */,
 				4CA85EF11DA1D30E00601C0C /* MainModule.swift in Sources */,
 				4CA85EFD1DA1DFC900601C0C /* UserPrefs.swift in Sources */,
 				4CA85EDE1DA1957400601C0C /* main.swift in Sources */,

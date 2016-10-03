@@ -10,9 +10,9 @@ import Foundation
 
 class TipCalculatorModule {
     
-    private var _presenter : TipCalculatorPresenterImpl;
+    private var _presenter : TipCalculatorPresenter;
 
-    var presenter:TipCalculatorPresenterImpl {
+    var presenter:TipCalculatorPresenter {
         get { return _presenter; }
     }
     

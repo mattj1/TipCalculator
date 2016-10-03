@@ -13,6 +13,8 @@ let numberOfPeopleKey = "numberOfPeople"
 let tipPercentageKey = "tipPercentage"
 let themeKey = "themeKey"
 
+// https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Protocols.html
+
 class UserPrefsUserDefaults : UserPrefs {
     
     func numberOfPeople() -> Int {

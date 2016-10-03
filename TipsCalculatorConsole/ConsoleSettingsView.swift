@@ -26,14 +26,6 @@ class ConsoleSettingsView : SettingsView {
     
     var presenter:SettingsPresenter?;
     
-    func input() -> String {
-        let input = String(
-            data: FileHandle.standardInput.availableData,
-            encoding: String.Encoding.utf8)
-        
-        return input!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines);
-    }
-    
     required init?() {
         //super.init();
         
@@ -42,10 +34,6 @@ class ConsoleSettingsView : SettingsView {
         self.presenter = SettingsPresenterImpl(localeManager:mainModule.localeManager, userPrefs:mainModule.userPrefs);
         
         self.presenter?.setView(view: self);
-        
-//        self.presenter = TipCalculatorPresenterImpl(tipCalculatorManager: TipCalculatorManager(), localeManager:LocaleManager());
-        
-//        self.presenter?.view = self;
         
         self.presenter?.viewWillAppear();
         

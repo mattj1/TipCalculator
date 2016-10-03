@@ -11,15 +11,7 @@ import Foundation
 
 class ConsoleTipCalculatorView : TipCalculatorView {
     
-    var presenter:TipCalculatorPresenterImpl?; // TODO
-    
-    func input() -> String {
-        let input = String(
-            data: FileHandle.standardInput.availableData,
-            encoding: String.Encoding.utf8)
-        
-        return input!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines);
-    }
+    var presenter:TipCalculatorPresenter?;
     
     required init?(tipCalculatorModule:TipCalculatorModule) {
         //super.init();
@@ -28,9 +20,9 @@ class ConsoleTipCalculatorView : TipCalculatorView {
         
         self.presenter = tipCalculatorModule.presenter;
         
-        self.presenter?.view = self;
+        self.presenter?.setView(view: self);
         
-        self.presenter?.viewDidAppear();
+        self.presenter?.viewWillAppear();
         
         self.userInput();
     }
