@@ -110,6 +110,9 @@ class ConsoleSettingsView : SettingsView {
     }
     func chooseTheme() {
         
+        // Settings stuff for themes needs to be moved out of Themes.swift
+        print(" ** CURRENTLY NOT WORKING **");
+        
         let i:Int = getListChoice(cells: themeCells);
         if(i == -1) {
             return;

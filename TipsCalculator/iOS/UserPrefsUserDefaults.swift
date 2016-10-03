@@ -59,7 +59,7 @@ class UserPrefsUserDefaults : UserPrefs {
     }
     
     func getThemeString() -> String {
-        var themeString:String? = UserDefaults.standard.string(forKey: themeKey)!;
+        var themeString:String? = UserDefaults.standard.string(forKey: themeKey);
         if(themeString == nil) {
             themeString = "light";
         }
