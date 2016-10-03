@@ -23,12 +23,10 @@ class SettingsViewController: UIViewController, SettingsView {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
         
-        self.userPrefs = appDelegate.mainModule().getUserPrefs();
-        self.presenter = SettingsPresenterImpl(localeManager:appDelegate.mainModule().getLocaleManager(), userPrefs:self.userPrefs!);
+        self.userPrefs = appDelegate.mainModule.userPrefs;
+        self.presenter = SettingsPresenterImpl(localeManager:appDelegate.mainModule.localeManager, userPrefs:self.userPrefs!);
         
         self.presenter?.view = self;
-        
-        
     }
     
     override func viewDidLoad() {

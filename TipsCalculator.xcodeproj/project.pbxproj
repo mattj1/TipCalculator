@@ -38,7 +38,6 @@
 		4CA85EF61DA1D5BA00601C0C /* TipCalculatorModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85EF41DA1D49400601C0C /* TipCalculatorModule.swift */; };
 		4CA85EF81DA1D9B000601C0C /* UserPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85EF71DA1D9B000601C0C /* UserPrefs.swift */; };
 		4CA85EFA1DA1DA3400601C0C /* UserPrefsUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85EF91DA1DA3400601C0C /* UserPrefsUserDefaults.swift */; };
-		4CA85EFB1DA1DA3400601C0C /* UserPrefsUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85EF91DA1DA3400601C0C /* UserPrefsUserDefaults.swift */; };
 		4CA85EFD1DA1DFC900601C0C /* UserPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85EF71DA1D9B000601C0C /* UserPrefs.swift */; };
 		4CA85EFF1DA1E5F000601C0C /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85EFE1DA1E5F000601C0C /* SettingsPresenter.swift */; };
 		4CA85F001DA1E5F000601C0C /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85EFE1DA1E5F000601C0C /* SettingsPresenter.swift */; };
@@ -46,6 +45,7 @@
 		4CA85F031DA1E69400601C0C /* SettingsPresenterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85F011DA1E69400601C0C /* SettingsPresenterImpl.swift */; };
 		4CA85F051DA1EAE000601C0C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85F041DA1EAE000601C0C /* SettingsView.swift */; };
 		4CA85F061DA1EAE000601C0C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85F041DA1EAE000601C0C /* SettingsView.swift */; };
+		4CA85F071DA21DAC00601C0C /* UserPrefsUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85EF91DA1DA3400601C0C /* UserPrefsUserDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -465,10 +465,10 @@
 				4CA85F031DA1E69400601C0C /* SettingsPresenterImpl.swift in Sources */,
 				4CA85EEA1DA196D500601C0C /* TipCalculatorPresenterImpl.swift in Sources */,
 				4CA85EEE1DA1CF9300601C0C /* ConsoleSettingsView.swift in Sources */,
-				4CA85EFB1DA1DA3400601C0C /* UserPrefsUserDefaults.swift in Sources */,
 				4CA85EE61DA1960400601C0C /* ConsoleTipCalculatorView.swift in Sources */,
 				4CA85EEB1DA1A9FF00601C0C /* TipCalculatorManager.swift in Sources */,
 				4CA85EEC1DA1AA0C00601C0C /* LocaleManager.swift in Sources */,
+				4CA85F071DA21DAC00601C0C /* UserPrefsUserDefaults.swift in Sources */,
 				4CA85F061DA1EAE000601C0C /* SettingsView.swift in Sources */,
 				4CA85EE71DA1962000601C0C /* TipCalculatorView.swift in Sources */,
 				4CA85EF11DA1D30E00601C0C /* MainModule.swift in Sources */,

@@ -24,7 +24,7 @@ class ViewController: UIViewController, TipCalculatorView {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
         
-        let tipCalculatorModule:TipCalculatorModule = appDelegate.mainModule().createTipCalculatorModule();
+        let tipCalculatorModule:TipCalculatorModule = appDelegate.mainModule.createTipCalculatorModule();
         
         self.presenter = tipCalculatorModule.presenter;
         

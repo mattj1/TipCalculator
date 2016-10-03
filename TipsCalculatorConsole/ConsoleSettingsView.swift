@@ -38,9 +38,8 @@ class ConsoleSettingsView : SettingsView {
         //super.init();
         
         // This should come from application module, or injected into this ViewController...
-        
-        //self.userPrefs = appDelegate.mainModule().getUserPrefs();
-        self.presenter = SettingsPresenterImpl(localeManager:mainModule.getLocaleManager(), userPrefs:mainModule.getUserPrefs());
+
+        self.presenter = SettingsPresenterImpl(localeManager:mainModule.localeManager, userPrefs:mainModule.userPrefs);
         
         self.presenter?.setView(view: self);
         

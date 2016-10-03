@@ -10,22 +10,14 @@ import Foundation
 
 class MainModule {
     
-    var localeManager:LocaleManager;
-    var userPrefs:UserPrefs;
+    private(set) var localeManager:LocaleManager;
+    private(set) var userPrefs:UserPrefs;
     
     init() {
         // These should be provided by something else.
         userPrefs = UserPrefsUserDefaults();
         localeManager = LocaleManager(userPrefs:userPrefs);
         
-    }
-    
-    func getLocaleManager() -> LocaleManager {
-        return localeManager;
-    }
-    
-    func getUserPrefs() -> UserPrefs {
-        return userPrefs;
     }
     
     func createTipCalculatorModule() -> TipCalculatorModule {

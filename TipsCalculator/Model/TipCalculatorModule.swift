@@ -18,7 +18,7 @@ class TipCalculatorModule {
     
     init(mainModule:MainModule) {
         _presenter = TipCalculatorPresenterImpl(tipCalculatorManager: TipCalculatorManager(),
-                                                localeManager:mainModule.getLocaleManager(),
-                                                userPrefs:mainModule.getUserPrefs());
+                                                localeManager:mainModule.localeManager,
+                                                userPrefs:mainModule.userPrefs);
     }
 }
