@@ -20,4 +20,7 @@ protocol UserPrefs {
     
     func getThemeString() -> String;
     func setThemeString(themeString:String);
+    
+    func getLastUsed() -> Date?;
+    func setLastUsed(date:Date);
 }

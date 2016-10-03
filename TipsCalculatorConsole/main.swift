@@ -8,7 +8,7 @@
 
 import Foundation
 
-var mainModule:MainModule = MainModule();
+var mainModule:MainModule = MainModule(componentProvider: OSXComponentProvider());
 
 func input() -> String {
     let input = String(

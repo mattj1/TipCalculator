@@ -45,9 +45,15 @@
 		4CA85F031DA1E69400601C0C /* SettingsPresenterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85F011DA1E69400601C0C /* SettingsPresenterImpl.swift */; };
 		4CA85F051DA1EAE000601C0C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85F041DA1EAE000601C0C /* SettingsView.swift */; };
 		4CA85F061DA1EAE000601C0C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85F041DA1EAE000601C0C /* SettingsView.swift */; };
-		4CA85F071DA21DAC00601C0C /* UserPrefsUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85EF91DA1DA3400601C0C /* UserPrefsUserDefaults.swift */; };
 		4CA85F091DA252F200601C0C /* TipCalculatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85F081DA252F200601C0C /* TipCalculatorPresenter.swift */; };
 		4CA85F0A1DA252F200601C0C /* TipCalculatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85F081DA252F200601C0C /* TipCalculatorPresenter.swift */; };
+		4CA85F0D1DA2F0A400601C0C /* UserPrefsTemp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85F0C1DA2F0A400601C0C /* UserPrefsTemp.swift */; };
+		4CA85F0E1DA2F0A400601C0C /* UserPrefsTemp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85F0C1DA2F0A400601C0C /* UserPrefsTemp.swift */; };
+		4CA85F101DA2F10100601C0C /* ComponentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85F0F1DA2F10100601C0C /* ComponentProvider.swift */; };
+		4CA85F111DA2F10100601C0C /* ComponentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85F0F1DA2F10100601C0C /* ComponentProvider.swift */; };
+		4CA85F131DA2F14300601C0C /* OSXComponentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85F121DA2F14300601C0C /* OSXComponentProvider.swift */; };
+		4CA85F141DA2F14300601C0C /* OSXComponentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85F121DA2F14300601C0C /* OSXComponentProvider.swift */; };
+		4CA85F171DA2F29800601C0C /* iOSComponentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85F151DA2F24E00601C0C /* iOSComponentProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +122,10 @@
 		4CA85F011DA1E69400601C0C /* SettingsPresenterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsPresenterImpl.swift; path = Model/SettingsPresenterImpl.swift; sourceTree = "<group>"; };
 		4CA85F041DA1EAE000601C0C /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsView.swift; path = Model/SettingsView.swift; sourceTree = "<group>"; };
 		4CA85F081DA252F200601C0C /* TipCalculatorPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TipCalculatorPresenter.swift; path = Model/TipCalculatorPresenter.swift; sourceTree = "<group>"; };
+		4CA85F0C1DA2F0A400601C0C /* UserPrefsTemp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPrefsTemp.swift; path = OSX/UserPrefsTemp.swift; sourceTree = "<group>"; };
+		4CA85F0F1DA2F10100601C0C /* ComponentProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComponentProvider.swift; path = Model/ComponentProvider.swift; sourceTree = "<group>"; };
+		4CA85F121DA2F14300601C0C /* OSXComponentProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSXComponentProvider.swift; path = OSX/OSXComponentProvider.swift; sourceTree = "<group>"; };
+		4CA85F151DA2F24E00601C0C /* iOSComponentProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOSComponentProvider.swift; path = iOS/iOSComponentProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +207,7 @@
 		20D4C9001D84A8C90056A1DA /* TipsCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				4CA85F0B1DA2F09300601C0C /* Console */,
 				4CA85EFC1DA1DA4800601C0C /* iOS */,
 				4CA85EE21DA195A800601C0C /* Model */,
 				208F88A91D90BD6B00BB8C1C /* Helpers */,
@@ -252,6 +263,7 @@
 				4CA85EEF1DA1D2E800601C0C /* MainModule.swift */,
 				4CA85EF41DA1D49400601C0C /* TipCalculatorModule.swift */,
 				4CA85EF71DA1D9B000601C0C /* UserPrefs.swift */,
+				4CA85F0F1DA2F10100601C0C /* ComponentProvider.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -260,8 +272,18 @@
 			isa = PBXGroup;
 			children = (
 				4CA85EF91DA1DA3400601C0C /* UserPrefsUserDefaults.swift */,
+				4CA85F151DA2F24E00601C0C /* iOSComponentProvider.swift */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		4CA85F0B1DA2F09300601C0C /* Console */ = {
+			isa = PBXGroup;
+			children = (
+				4CA85F0C1DA2F0A400601C0C /* UserPrefsTemp.swift */,
+				4CA85F121DA2F14300601C0C /* OSXComponentProvider.swift */,
+			);
+			name = Console;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -423,6 +445,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CA85F101DA2F10100601C0C /* ComponentProvider.swift in Sources */,
 				20D4C9041D84A8C90056A1DA /* ViewController.swift in Sources */,
 				209E61591D9C84DD008D5EE2 /* ToolBarBuilder.swift in Sources */,
 				208F88AB1D90BD7900BB8C1C /* LocaleManager.swift in Sources */,
@@ -436,11 +459,14 @@
 				208F88A61D8FB65B00BB8C1C /* SettingsViewController.swift in Sources */,
 				4CA85EE41DA195CB00601C0C /* TipCalculatorView.swift in Sources */,
 				209E615D1D9C87D3008D5EE2 /* UIViewExtension.swift in Sources */,
+				4CA85F171DA2F29800601C0C /* iOSComponentProvider.swift in Sources */,
 				4CA85F021DA1E69400601C0C /* SettingsPresenterImpl.swift in Sources */,
 				4CA85F091DA252F200601C0C /* TipCalculatorPresenter.swift in Sources */,
 				4CA85EFA1DA1DA3400601C0C /* UserPrefsUserDefaults.swift in Sources */,
+				4CA85F0D1DA2F0A400601C0C /* UserPrefsTemp.swift in Sources */,
 				209E61421D98E1C5008D5EE2 /* SettingsDataManager.swift in Sources */,
 				20D7FB4A1D91055700448CEC /* TipCalculatorManager.swift in Sources */,
+				4CA85F131DA2F14300601C0C /* OSXComponentProvider.swift in Sources */,
 				4CA85EF01DA1D2E800601C0C /* MainModule.swift in Sources */,
 				4CA85F051DA1EAE000601C0C /* SettingsView.swift in Sources */,
 			);
@@ -467,17 +493,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CA85F111DA2F10100601C0C /* ComponentProvider.swift in Sources */,
 				4CA85F031DA1E69400601C0C /* SettingsPresenterImpl.swift in Sources */,
 				4CA85EEA1DA196D500601C0C /* TipCalculatorPresenterImpl.swift in Sources */,
 				4CA85EEE1DA1CF9300601C0C /* ConsoleSettingsView.swift in Sources */,
 				4CA85EE61DA1960400601C0C /* ConsoleTipCalculatorView.swift in Sources */,
 				4CA85EEB1DA1A9FF00601C0C /* TipCalculatorManager.swift in Sources */,
 				4CA85EEC1DA1AA0C00601C0C /* LocaleManager.swift in Sources */,
-				4CA85F071DA21DAC00601C0C /* UserPrefsUserDefaults.swift in Sources */,
 				4CA85F061DA1EAE000601C0C /* SettingsView.swift in Sources */,
 				4CA85EE71DA1962000601C0C /* TipCalculatorView.swift in Sources */,
 				4CA85F0A1DA252F200601C0C /* TipCalculatorPresenter.swift in Sources */,
+				4CA85F141DA2F14300601C0C /* OSXComponentProvider.swift in Sources */,
 				4CA85EF11DA1D30E00601C0C /* MainModule.swift in Sources */,
+				4CA85F0E1DA2F0A400601C0C /* UserPrefsTemp.swift in Sources */,
 				4CA85EFD1DA1DFC900601C0C /* UserPrefs.swift in Sources */,
 				4CA85EDE1DA1957400601C0C /* main.swift in Sources */,
 				4CA85EF61DA1D5BA00601C0C /* TipCalculatorModule.swift in Sources */,

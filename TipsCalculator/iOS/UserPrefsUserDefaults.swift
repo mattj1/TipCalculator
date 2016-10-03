@@ -12,6 +12,7 @@ let selectedLocaleKey: String = "selectedLocale"
 let numberOfPeopleKey = "numberOfPeople"
 let tipPercentageKey = "tipPercentage"
 let themeKey = "themeKey"
+let lastUsed = "lastUsed"
 
 // https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Protocols.html
 
@@ -71,5 +72,19 @@ class UserPrefsUserDefaults : UserPrefs {
     
     func setThemeString(themeString:String) {
         UserDefaults.standard.set(themeString, forKey: themeKey)
+    }
+    
+    
+    func getLastUsed() -> Date? {
+        let obj = UserDefaults.standard.object(forKey: lastUsed);
+        if(obj != nil) {
+            return obj as? Date;
+        }
+        
+        return nil;
+    }
+    
+    func setLastUsed(date:Date) {
+        UserDefaults.standard.set(Date(), forKey: lastUsed);
     }
 }
