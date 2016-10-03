@@ -7,21 +7,16 @@
 //
 
 import Foundation
-//import UIKit
-
-let selectedLocaleKey: String = "selectedLocale"
 
 class LocaleManager: Equatable {
     
-    static let sharedInstace: LocaleManager = {
-        let instance = LocaleManager()
-        
-        return instance
-    }()
+    var userPrefs:UserPrefs;
     
     var localeDictionary: [String: String] = [String: String]()
     
-    init(identifiers: [String]? = NSLocale.availableLocaleIdentifiers) {
+    init(identifiers: [String]? = NSLocale.availableLocaleIdentifiers, userPrefs:UserPrefs) {
+        self.userPrefs = userPrefs;
+        
         let locale = NSLocale(localeIdentifier: "en_US")
         for identifier in identifiers! {
             let name: String = locale.displayName(forKey: NSLocale.Key.identifier, value: identifier)!
@@ -79,16 +74,8 @@ class LocaleManager: Equatable {
         return true
     }
     
-    var selectedLocale: Int {
-        if (UserDefaults.standard.object(forKey: selectedLocaleKey) != nil) {
-            return UserDefaults.standard.object(forKey: selectedLocaleKey) as! Int
-        }
-        
-        return 0
-    }
-    
     private func currentLocale() -> Locale {
-        return Locale(identifier: Locale.availableIdentifiers[self.selectedLocale]);
+        return Locale(identifier: Locale.availableIdentifiers[userPrefs.getSelectedLocale()]);
     }
 }
 

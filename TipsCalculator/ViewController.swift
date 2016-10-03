@@ -9,8 +9,6 @@
 import UIKit
 import Foundation
 
-let notificationTotalUpdated: String = "totalUpdatedNotification"
-
 //View Controller Life Cycle and Initialization Methods
 class ViewController: UIViewController, TipCalculatorView {
     @IBOutlet weak var totalConsumeLabel: UITextView?
@@ -24,15 +22,17 @@ class ViewController: UIViewController, TipCalculatorView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        // This should come from application module, or injected into this ViewController...
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
         
-        self.presenter = TipCalculatorPresenterImpl(tipCalculatorManager: TipCalculatorManager(), localeManager:LocaleManager());
+        let tipCalculatorModule:TipCalculatorModule = appDelegate.mainModule().createTipCalculatorModule();
+        
+        self.presenter = tipCalculatorModule.presenter;
         
         self.presenter?.view = self;
     }
     
     override func viewDidLoad() {
-        //NotificationCenter.default.addObserver(self, selector:#selector(formatLocale) , name: NSNotification.Name(rawValue: notificationUpdatedLocale), object: nil)
+
         NotificationCenter.default.addObserver(self, selector: #selector(makeTextViewFirstResponder), name: NSNotification.Name.UIApplicationDidBecomeActive , object: nil)
         self.calculatorVC = self.storyboard?.instantiateViewController(withIdentifier: "calculatorFrame") as? CalculatorViewController
         self.calculatorVC?.view.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +50,6 @@ class ViewController: UIViewController, TipCalculatorView {
         totalConsumeLabel?.keyboardType = UIKeyboardType.decimalPad
         totalConsumeLabel?.delegate = self
         totalConsumeLabel?.textColor = Theme.calculatorFontColor
-        //totalConsumeLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (totalConsumeLabel?.text)!, locale: Locale.availableIdentifiers[self.selectedLocale])
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -60,7 +59,6 @@ class ViewController: UIViewController, TipCalculatorView {
         self.view.backgroundColor = Theme.calculatorBackgroundColor
         self.navigationController?.navigationBar.tintColor = Theme.toolBarButtonTintColor
         
-        //totalConsumeLabel?.text = LocaleManager.sharedInstace.formatLocale(value: (totalConsumeLabel?.text)!, locale: Locale.availableIdentifiers[self.selectedLocale])
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,6 +68,19 @@ class ViewController: UIViewController, TipCalculatorView {
     func updateView(total:String, tipPercentage:String, numPeople:String, tipAmount:String, amountPerson:String) {
         totalConsumeLabel?.text = total;
         self.calculatorVC?.updateView(tipPercentage: tipPercentage, numPeople: numPeople, tipAmount: tipAmount, amountPerson: amountPerson);
+    }
+    
+    func openSettings() {
+    
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("segue: \(segue)");
+    }
+    
+    @IBAction
+    func settingsButtonPressed() {
+        presenter?.goToSettings();
     }
 }
 

@@ -10,4 +10,5 @@ import Foundation
 
 protocol TipCalculatorView {
     func updateView(total:String, tipPercentage:String, numPeople:String, tipAmount:String, amountPerson:String);
+    func openSettings();
 }

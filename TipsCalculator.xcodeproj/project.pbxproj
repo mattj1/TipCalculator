@@ -31,6 +31,15 @@
 		4CA85EEA1DA196D500601C0C /* TipCalculatorPresenterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85EE81DA196C600601C0C /* TipCalculatorPresenterImpl.swift */; };
 		4CA85EEB1DA1A9FF00601C0C /* TipCalculatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7FB491D91055700448CEC /* TipCalculatorManager.swift */; };
 		4CA85EEC1DA1AA0C00601C0C /* LocaleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208F88AA1D90BD7900BB8C1C /* LocaleManager.swift */; };
+		4CA85EEE1DA1CF9300601C0C /* ConsoleSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85EED1DA1CF9300601C0C /* ConsoleSettingsView.swift */; };
+		4CA85EF01DA1D2E800601C0C /* MainModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85EEF1DA1D2E800601C0C /* MainModule.swift */; };
+		4CA85EF11DA1D30E00601C0C /* MainModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85EEF1DA1D2E800601C0C /* MainModule.swift */; };
+		4CA85EF51DA1D49400601C0C /* TipCalculatorModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85EF41DA1D49400601C0C /* TipCalculatorModule.swift */; };
+		4CA85EF61DA1D5BA00601C0C /* TipCalculatorModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85EF41DA1D49400601C0C /* TipCalculatorModule.swift */; };
+		4CA85EF81DA1D9B000601C0C /* UserPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85EF71DA1D9B000601C0C /* UserPrefs.swift */; };
+		4CA85EFA1DA1DA3400601C0C /* UserPrefsUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85EF91DA1DA3400601C0C /* UserPrefsUserDefaults.swift */; };
+		4CA85EFB1DA1DA3400601C0C /* UserPrefsUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85EF91DA1DA3400601C0C /* UserPrefsUserDefaults.swift */; };
+		4CA85EFD1DA1DFC900601C0C /* UserPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85EF71DA1D9B000601C0C /* UserPrefs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +99,11 @@
 		4CA85EE31DA195CB00601C0C /* TipCalculatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TipCalculatorView.swift; path = Model/TipCalculatorView.swift; sourceTree = "<group>"; };
 		4CA85EE51DA1960400601C0C /* ConsoleTipCalculatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleTipCalculatorView.swift; sourceTree = "<group>"; };
 		4CA85EE81DA196C600601C0C /* TipCalculatorPresenterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TipCalculatorPresenterImpl.swift; path = Model/TipCalculatorPresenterImpl.swift; sourceTree = "<group>"; };
+		4CA85EED1DA1CF9300601C0C /* ConsoleSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleSettingsView.swift; sourceTree = "<group>"; };
+		4CA85EEF1DA1D2E800601C0C /* MainModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainModule.swift; sourceTree = "<group>"; };
+		4CA85EF41DA1D49400601C0C /* TipCalculatorModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TipCalculatorModule.swift; path = Model/TipCalculatorModule.swift; sourceTree = "<group>"; };
+		4CA85EF71DA1D9B000601C0C /* UserPrefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPrefs.swift; path = Model/UserPrefs.swift; sourceTree = "<group>"; };
+		4CA85EF91DA1DA3400601C0C /* UserPrefsUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPrefsUserDefaults.swift; path = iOS/UserPrefsUserDefaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +185,7 @@
 		20D4C9001D84A8C90056A1DA /* TipsCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				4CA85EFC1DA1DA4800601C0C /* iOS */,
 				4CA85EE21DA195A800601C0C /* Model */,
 				208F88A91D90BD6B00BB8C1C /* Helpers */,
 				20D4C9011D84A8C90056A1DA /* AppDelegate.swift */,
@@ -208,6 +223,7 @@
 			children = (
 				4CA85EDD1DA1957400601C0C /* main.swift */,
 				4CA85EE51DA1960400601C0C /* ConsoleTipCalculatorView.swift */,
+				4CA85EED1DA1CF9300601C0C /* ConsoleSettingsView.swift */,
 			);
 			path = TipsCalculatorConsole;
 			sourceTree = "<group>";
@@ -217,8 +233,19 @@
 			children = (
 				4CA85EE31DA195CB00601C0C /* TipCalculatorView.swift */,
 				4CA85EE81DA196C600601C0C /* TipCalculatorPresenterImpl.swift */,
+				4CA85EEF1DA1D2E800601C0C /* MainModule.swift */,
+				4CA85EF41DA1D49400601C0C /* TipCalculatorModule.swift */,
+				4CA85EF71DA1D9B000601C0C /* UserPrefs.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		4CA85EFC1DA1DA4800601C0C /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				4CA85EF91DA1DA3400601C0C /* UserPrefsUserDefaults.swift */,
+			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -384,14 +411,18 @@
 				209E61591D9C84DD008D5EE2 /* ToolBarBuilder.swift in Sources */,
 				208F88AB1D90BD7900BB8C1C /* LocaleManager.swift in Sources */,
 				209E615F1D9C8C1D008D5EE2 /* Themes.swift in Sources */,
+				4CA85EF81DA1D9B000601C0C /* UserPrefs.swift in Sources */,
 				4CA85EE91DA196C600601C0C /* TipCalculatorPresenterImpl.swift in Sources */,
 				20D4C9321D85F83D0056A1DA /* CalculatorViewController.swift in Sources */,
 				20D4C9021D84A8C90056A1DA /* AppDelegate.swift in Sources */,
+				4CA85EF51DA1D49400601C0C /* TipCalculatorModule.swift in Sources */,
 				208F88A61D8FB65B00BB8C1C /* SettingsViewController.swift in Sources */,
 				4CA85EE41DA195CB00601C0C /* TipCalculatorView.swift in Sources */,
 				209E615D1D9C87D3008D5EE2 /* UIViewExtension.swift in Sources */,
+				4CA85EFA1DA1DA3400601C0C /* UserPrefsUserDefaults.swift in Sources */,
 				209E61421D98E1C5008D5EE2 /* SettingsDataManager.swift in Sources */,
 				20D7FB4A1D91055700448CEC /* TipCalculatorManager.swift in Sources */,
+				4CA85EF01DA1D2E800601C0C /* MainModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,11 +448,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CA85EEA1DA196D500601C0C /* TipCalculatorPresenterImpl.swift in Sources */,
+				4CA85EEE1DA1CF9300601C0C /* ConsoleSettingsView.swift in Sources */,
+				4CA85EFB1DA1DA3400601C0C /* UserPrefsUserDefaults.swift in Sources */,
 				4CA85EE61DA1960400601C0C /* ConsoleTipCalculatorView.swift in Sources */,
 				4CA85EEB1DA1A9FF00601C0C /* TipCalculatorManager.swift in Sources */,
 				4CA85EEC1DA1AA0C00601C0C /* LocaleManager.swift in Sources */,
 				4CA85EE71DA1962000601C0C /* TipCalculatorView.swift in Sources */,
+				4CA85EF11DA1D30E00601C0C /* MainModule.swift in Sources */,
+				4CA85EFD1DA1DFC900601C0C /* UserPrefs.swift in Sources */,
 				4CA85EDE1DA1957400601C0C /* main.swift in Sources */,
+				4CA85EF61DA1D5BA00601C0C /* TipCalculatorModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

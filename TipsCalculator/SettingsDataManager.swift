@@ -50,7 +50,7 @@ class SettingsDataManager: NSObject, UITableViewDelegate, UITableViewDataSource 
             
             
             let localeName: String = NSLocale.availableLocaleIdentifiers[indexPath.row]
-            onDemandCell.textLabel?.text = LocaleManager.sharedInstace.localeDictionary[localeName]
+            //onDemandCell.textLabel?.text = LocaleManager.sharedInstace.localeDictionary[localeName]
             
         
             return onDemandCell

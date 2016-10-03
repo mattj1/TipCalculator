@@ -8,10 +8,6 @@
 
 import Foundation
 
-// TODO: Move these to a user prefs manager
-let numberOfPeopleKey = "numberOfPeople"
-let tipPercentageKey = "tipPercentage"
-
 class TipCalculatorPresenterImpl {
     var total:Float = 0;
     var numberOfPeople:Int = 1;
@@ -19,14 +15,17 @@ class TipCalculatorPresenterImpl {
     
     var tipCalculatorManager:TipCalculatorManager;
     var localeManager:LocaleManager;
+    var userPrefs:UserPrefs;
     
     var view:TipCalculatorView?;
     
-
-    init(tipCalculatorManager:TipCalculatorManager, localeManager:LocaleManager) {
+    init(tipCalculatorManager:TipCalculatorManager, localeManager:LocaleManager, userPrefs:UserPrefs) {
         self.total = 0;
-        self.numberOfPeople = 1;
-        self.tipPercent = 0;
+        
+        self.userPrefs = userPrefs;
+        
+        self.numberOfPeople = userPrefs.numberOfPeople();
+        self.tipPercent = userPrefs.tipPercent();
         
         self.tipCalculatorManager = tipCalculatorManager;
         self.localeManager = localeManager;
@@ -44,28 +43,28 @@ class TipCalculatorPresenterImpl {
     func increaseNumberOfPeople() {
         numberOfPeople = numberOfPeople + 1;
         updateView();
-        UserDefaults.standard.set(numberOfPeople, forKey: numberOfPeopleKey)
+        userPrefs.setNumberOfPeople(value: numberOfPeople);
     }
     
     func decreaseNumberOfPeople() {
         if(numberOfPeople > 1) {
             numberOfPeople = numberOfPeople - 1;
             updateView();
-            UserDefaults.standard.set(numberOfPeople, forKey: numberOfPeopleKey)
+            userPrefs.setNumberOfPeople(value: numberOfPeople);
         }
     }
     
     func increaseTipAmount() {
         tipPercent = tipPercent + 1;
         updateView();
-        UserDefaults.standard.set(tipPercent, forKey: tipPercentageKey)
+        userPrefs.setTipPercent(value: tipPercent);
     }
     
     func decreaseTipAmount() {
         if(tipPercent > 1) {
             tipPercent = tipPercent - 1;
             updateView()
-            UserDefaults.standard.set(tipPercent, forKey: tipPercentageKey)
+            userPrefs.setTipPercent(value: tipPercent);
         }
     }
     
@@ -73,6 +72,10 @@ class TipCalculatorPresenterImpl {
         self.total = localeManager.returnFloatWithoutLocale(value: total);
         
         updateView();
+    }
+    
+    func goToSettings() {
+        view?.openSettings();
     }
     
     private func updateView() {

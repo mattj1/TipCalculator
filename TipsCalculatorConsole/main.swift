@@ -10,5 +10,7 @@ import Foundation
 
 print("Hello, World!")
 
-ConsoleTipCalculatorView();
+var mainModule:MainModule = MainModule();
+
+ConsoleTipCalculatorView(tipCalculatorModule:mainModule.createTipCalculatorModule());
 

@@ -18,17 +18,15 @@ class ConsoleTipCalculatorView : TipCalculatorView {
             data: FileHandle.standardInput.availableData,
             encoding: String.Encoding.utf8)
         
-        
-
         return input!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines);
     }
     
-    required init?() {
+    required init?(tipCalculatorModule:TipCalculatorModule) {
         //super.init();
         
         // This should come from application module, or injected into this ViewController...
         
-        self.presenter = TipCalculatorPresenterImpl(tipCalculatorManager: TipCalculatorManager(), localeManager:LocaleManager());
+        self.presenter = tipCalculatorModule.presenter;
         
         self.presenter?.view = self;
         
@@ -85,6 +83,7 @@ class ConsoleTipCalculatorView : TipCalculatorView {
                     presenter?.decreaseNumberOfPeople();
                     break;
                 case "6":
+                    presenter?.goToSettings();
                     break;
                 case "7":
                     running = false;
@@ -95,6 +94,9 @@ class ConsoleTipCalculatorView : TipCalculatorView {
                 break;
             }
         }
-        
+    }
+    
+    internal func openSettings() {
+        ConsoleSettingsView();
     }
 }
