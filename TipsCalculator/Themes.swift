@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-let themeKey = "themeKey"
-
 struct Theme {
     static var calculatorBackgroundColor = UIColor.white
     static var calculatorFontColor = UIColor.blue
@@ -23,7 +21,7 @@ struct Theme {
     static var toolBarButtonTintColor = UIColor.blue
     static var themeValue: Int = 0
     
-    static func themeLight() {
+    static func themeLight(userPrefs:UserPrefs) {
         calculatorBackgroundColor = UIColor.white
         calculatorFontColor = UIColor.blue
         tipControlsBackgroundColor = UIColor.white
@@ -33,11 +31,11 @@ struct Theme {
         settingsHeaderBackgroundColor = UIColor(red: 60.0/255.0, green: 90.0/255.0, blue: 230.0/255.0, alpha: 0.8)
         toolBarButtonTintColor = UIColor(red: 60.0/255.0, green: 90.0/255.0, blue: 230.0/255.0, alpha: 0.8)
         settingsHeaderFontColor = UIColor.white
-        self.saveThemeWithValue(theme: ThemeEnum.Light)
+        self.saveThemeWithValue(userPrefs:userPrefs, theme: ThemeEnum.Light)
         themeValue = 0
     }
     
-    static func themeDark() {
+    static func themeDark(userPrefs:UserPrefs) {
         calculatorBackgroundColor = UIColor.darkGray
         calculatorFontColor = UIColor.white
         tipControlsBackgroundColor = UIColor.lightGray
@@ -47,25 +45,26 @@ struct Theme {
         settingsHeaderBackgroundColor = UIColor.darkGray
         toolBarButtonTintColor = UIColor.black
         settingsHeaderFontColor = UIColor.white
-        self.saveThemeWithValue(theme: ThemeEnum.Dark)
+        self.saveThemeWithValue(userPrefs:userPrefs, theme: ThemeEnum.Dark)
         themeValue = 1
     }
     
-    static func saveThemeWithValue(theme: ThemeEnum) {
+    static func saveThemeWithValue(userPrefs:UserPrefs, theme: ThemeEnum) {
         let themeString: String?
         if theme == ThemeEnum.Dark {
             themeString = "dark"
         } else {
             themeString = "light"
         }
-        UserDefaults.standard.set(themeString, forKey: themeKey)
+        
+        userPrefs.setThemeString(themeString:themeString!);
     }
     
-    static func startTheme() {
-        if UserDefaults.standard.object(forKey: themeKey) == nil || UserDefaults.standard.object(forKey: themeKey) as! String == "light" {
-            self.themeLight()
+    static func startTheme(userPrefs:UserPrefs) {
+        if userPrefs.getThemeString() == "light" {
+            self.themeLight(userPrefs:userPrefs)
         } else {
-            self.themeDark()
+            self.themeDark(userPrefs:userPrefs)
         }
     }
 }

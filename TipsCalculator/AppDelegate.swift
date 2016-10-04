@@ -7,7 +7,7 @@
 //
 
 import UIKit
-let lastUsed = "lastUsed"
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,35 +16,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        Theme.startTheme()
-        if UserDefaults.standard.object(forKey: lastUsed) != nil {
-            let lastTime: Date = UserDefaults.standard.object(forKey: lastUsed) as! Date
-            let elapsedTime: TimeInterval = lastTime.timeIntervalSince(Date())
-            if (elapsedTime > 1800) {
-                UserDefaults.standard.set(1, forKey: numberOfPeopleKey)
-                UserDefaults.standard.set(0, forKey: tipPercentageKey)
-            }
-        }
         
+        // Override point for customization after application launch.
+        Theme.startTheme(userPrefs: mainModule.userPrefs)
         
         return true
     }
 
-    private var _mainModule:MainModule?;
-    
-    func mainModule() -> MainModule {
-        if(_mainModule == nil) {
-            _mainModule = MainModule();
-        }
-        
-        return _mainModule!;
-    }
+    private(set) lazy var mainModule : MainModule = {
+        return MainModule(componentProvider: iOSComponentProvider())
+    }()
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-        UserDefaults.standard.set(Date(), forKey: lastUsed)
+        
+        mainModule.userPrefs.setLastUsed(date: Date());
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {

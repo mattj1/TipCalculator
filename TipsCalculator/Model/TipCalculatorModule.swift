@@ -10,15 +10,15 @@ import Foundation
 
 class TipCalculatorModule {
     
-    private var _presenter : TipCalculatorPresenterImpl;
+    private var _presenter : TipCalculatorPresenter;
 
-    var presenter:TipCalculatorPresenterImpl {
+    var presenter:TipCalculatorPresenter {
         get { return _presenter; }
     }
     
     init(mainModule:MainModule) {
         _presenter = TipCalculatorPresenterImpl(tipCalculatorManager: TipCalculatorManager(),
-                                                localeManager:mainModule.getLocaleManager(),
-                                                userPrefs:mainModule.getUserPrefs());
+                                                localeManager:mainModule.localeManager,
+                                                userPrefs:mainModule.userPrefs);
     }
 }

@@ -16,7 +16,11 @@ enum ThemeEnum {
 
 
 class SettingsDataManager: NSObject, UITableViewDelegate, UITableViewDataSource {
-    var themes: [String] = ["Light", "Dark"]
+    
+    var presenter:SettingsPresenter?;
+    
+    var themeCells = [SettingsCell]();
+    var localeCells = [SettingsCell]();
     
     @objc(tableView:heightForRowAtIndexPath:) func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 40.0
@@ -34,44 +38,33 @@ class SettingsDataManager: NSObject, UITableViewDelegate, UITableViewDataSource 
         onDemandCell.backgroundColor = Theme.settingsTableBackgroundColor
         onDemandCell.textLabel?.textColor = Theme.settingsTableFontColor
         
-        if ( indexPath.section == 1 ) {
-            let selectedLocale: Int
-            if UserDefaults.standard.object(forKey: selectedLocaleKey) != nil {
-                selectedLocale = UserDefaults.standard.object(forKey: selectedLocaleKey) as! Int
-            } else {
-                selectedLocale = 0
-            }
-            
-            if indexPath.row == selectedLocale {
-                onDemandCell.accessoryType = UITableViewCellAccessoryType.checkmark
-            } else {
-                onDemandCell.accessoryType = UITableViewCellAccessoryType.none
-            }
-            
-            
-            let localeName: String = NSLocale.availableLocaleIdentifiers[indexPath.row]
-            //onDemandCell.textLabel?.text = LocaleManager.sharedInstace.localeDictionary[localeName]
-            
+        var cellArray:[SettingsCell];
         
-            return onDemandCell
+        if(indexPath.section == 1) {
+            cellArray = localeCells;
+        } else {
+            cellArray = themeCells;
         }
         
-        if indexPath.row == Theme.themeValue {
+        let cell:SettingsCell = cellArray[indexPath.row];
+        
+        onDemandCell.textLabel?.text = cell.caption;
+        
+        if cell.selected {
             onDemandCell.accessoryType = UITableViewCellAccessoryType.checkmark
         } else {
             onDemandCell.accessoryType = UITableViewCellAccessoryType.none
         }
         
-        onDemandCell.textLabel?.text = themes[indexPath.row]
-        return onDemandCell
+        return onDemandCell;
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 1 {
-            return NSLocale.availableLocaleIdentifiers.count
+            return localeCells.count;
         }
         
-        return 2
+        return themeCells.count;
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -84,42 +77,26 @@ class SettingsDataManager: NSObject, UITableViewDelegate, UITableViewDataSource 
         selectedCell.accessoryType = UITableViewCellAccessoryType.checkmark
         
         if indexPath.section == 1 {
-            let selectedLocale: Int
-            if UserDefaults.standard.object(forKey: selectedLocaleKey) != nil {
-                selectedLocale = UserDefaults.standard.object(forKey: selectedLocaleKey) as! Int
-            } else {
-                selectedLocale = 0
-            }
-            
-            let tempIndexPath: IndexPath = IndexPath(row: selectedLocale , section: 1)
-            if let unselectedCell: UITableViewCell = tableView.cellForRow(at: tempIndexPath) {
-                unselectedCell.accessoryType = UITableViewCellAccessoryType.none
-            }
-            
-            UserDefaults.standard.set(indexPath.row, forKey: selectedLocaleKey)
-            
-            NotificationCenter.default.post(Notification(name: Notification.Name(notificationUpdatedLocale), object: Int(indexPath.row)))
+
+            presenter?.selectLocale(index: indexPath.row);
             return
         }
         
-        let themeValue: ThemeEnum = indexPath.row == 0 ? ThemeEnum.Light : ThemeEnum.Dark
-        var row: Int = 1
-        switch themeValue {
-            case ThemeEnum.Light:
-                Theme.themeLight()
-            case ThemeEnum.Dark:
-                Theme.themeDark()
-                row = 0
-        }
-        let tempIndexPath = IndexPath(row: row, section: 0)
-        let unselectedCell = tableView.cellForRow(at: tempIndexPath)
-        unselectedCell?.accessoryType = UITableViewCellAccessoryType.none
-        NotificationCenter.default.post(Notification(name: Notification.Name(notificationUpdateUIColors), object: Int(indexPath.row)))
+        presenter?.selectTheme(index: indexPath.row);
     }
 
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = Theme.settingsHeaderBackgroundColor
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = Theme.settingsHeaderFontColor
+    }
+    
+    
+    func setThemeCells(cells:[SettingsCell]) {
+        themeCells = cells;
+    }
+    
+    func setLocaleCells(cells:[SettingsCell]) {
+        localeCells = cells;
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TipCalculatorPresenterImpl {
+class TipCalculatorPresenterImpl : TipCalculatorPresenter {
     var total:Float = 0;
     var numberOfPeople:Int = 1;
     var tipPercent:Int = 0;
@@ -36,7 +36,7 @@ class TipCalculatorPresenterImpl {
         self.view = view;
     }
     
-    func viewDidAppear() {
+    func viewWillAppear() {
         updateView();
     }
     

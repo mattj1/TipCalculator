@@ -17,18 +17,18 @@ class ViewController: UIViewController, TipCalculatorView {
     weak var calculatorVC: CalculatorViewController?
     weak var settingsVC: SettingsViewController?
     
-    var presenter:TipCalculatorPresenterImpl?; // TODO
+    var presenter:TipCalculatorPresenter?;
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
         
-        let tipCalculatorModule:TipCalculatorModule = appDelegate.mainModule().createTipCalculatorModule();
+        let tipCalculatorModule:TipCalculatorModule = appDelegate.mainModule.createTipCalculatorModule();
         
         self.presenter = tipCalculatorModule.presenter;
         
-        self.presenter?.view = self;
+        self.presenter?.setView(view: self);
     }
     
     override func viewDidLoad() {
